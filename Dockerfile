@@ -39,13 +39,14 @@ RUN apt-get update \
 RUN groupadd group \
   && useradd -m -g group user \
   && chsh -s /bin/bash user \
-  && echo "User created"
+  && echo 'User created'
 
 COPY --chown=user:group ./container_root/ /
 
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
 RUN curl -sL "$HOME_URL" | tar zxf - \
-  && chown -R user.group /home/user
+  && chown -R user.group /home/user \
+  && echo 'Artifacts: downlaoded'
 
 RUN su user -c 'WINEARCH=win32 wine wineboot' \
   \
@@ -54,6 +55,7 @@ RUN su user -c 'WINEARCH=win32 wine wineboot' \
   && su user -c 'winetricks -q riched20' \
   && rm -rf /etc/wgetrc \
   \
+  && su user -c "wine regedit.exe /s '/home/user/.wine/drive_c/Program Files/Tencent/WeChat/install.reg'" \
   && rm -rf /home/user/.cache/ /home/user/tmp/* \
   && echo "Wine: initialized"
 
@@ -64,4 +66,4 @@ ENV \
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 
-VOLUME /WechatFiles
+VOLUME /WeChatFiles

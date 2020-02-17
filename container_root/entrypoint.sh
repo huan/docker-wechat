@@ -7,7 +7,7 @@ set -x
 # User Task
 #
 if [ "$(id -u)" -ne '0' ]; then
-  su user -c "wine reg QUERY 'HKEY_CURRENT_USER\Software\Tencent\WeChat'"
+  wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'
   exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
 fi
 
@@ -29,7 +29,7 @@ if [ "$UID" != "$(id -u user)" ]; then
 fi
 
 # FileSavePath
-chown user:group /WechatFiles
+chown user:group /WeChatFiles
 
 # wine reg DELETE 'HKCU\Software\Tencent\WeChat' UpdateFailCnt /f &> /dev/null
 # wine reg DELETE 'HKCU\Software\Tencent\WeChat' NeedUpdateType /f &> /dev/null
