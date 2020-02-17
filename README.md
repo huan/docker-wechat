@@ -1,4 +1,6 @@
-# docker-wechat
+# docker-wechat [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker)
+
+[![dockeri.co](https://dockeri.co/image/zixia/wechat)](https://hub.docker.com/r/zixia/wechat/)
 
 ![Docker Wechat](https://huan.github.io/docker-wechat/images/docker-wechat.png)
 
