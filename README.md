@@ -19,17 +19,17 @@ A Docker Image for Running Windows WeChat on Your Linux Desktop
 
 ### For Human
 
-This is the easist way to run Wechat PC on your Linux Box:
+Start WeChat PC on your Linux desktop by one-line command:
 
 ```sh
 curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh | bash
 ```
 
-Just copy / paste the above one line command to your terminal, and press Enter. Then WeChat PC should appear in your XWindows desktop shortly.
+Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
 
 ### For Hard Core Hackers
 
-If you want to control everything by yourself, for example: you want to open multiple WeChat PC client on your desktop, then you might want to learn the [wechat.sh](https://github.com/huan/docker-wechat/blob/master/wechat.sh) in our repository.
+If you want to control everything by yourself, for example, you want to open multiple WeChat PC client on your desktop; then, you might want to learn the [wechat.sh](https://github.com/huan/docker-wechat/blob/master/wechat.sh) in our repository.
 
 You can also try to run the following docker command:
 
