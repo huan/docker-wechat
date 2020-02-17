@@ -3,6 +3,18 @@
 set -e
 set -x
 
+#
+# User Task
+#
+if [ "$(id -u)" -ne '0' ]; then
+  su user -c "wine reg QUERY 'HKEY_CURRENT_USER\Software\Tencent\WeChat'"
+  exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
+fi
+
+#
+# Root Init
+#
+
 if [ -n "$AUDIO_GID" ]; then
   groupmod -o -g "$AUDIO_GID" audio
 fi
@@ -23,5 +35,7 @@ chown user:group /WechatFiles
 # wine reg DELETE 'HKCU\Software\Tencent\WeChat' NeedUpdateType /f &> /dev/null
 # rm "${WINEPREFIX}/drive_c/users/${USER}/Application Data/Tencent/WeChat/All Users/config/configEx.ini"
 
-su user -c "wine reg QUERY 'HKEY_CURRENT_USER\Software\Tencent\WeChat'"
-su user -c "wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'"
+#
+# Switch to user:group, and re-run self to run user task
+#
+exec gosu user:group "$0" "$@"

@@ -27,6 +27,7 @@ RUN apt-get update \
     ca-certificates:amd64 \
     cabextract:amd64 \
     curl:amd64 \
+    gosu \
     language-pack-zh-hans \
     tzdata:amd64 \
     unzip:amd64 \
@@ -57,7 +58,6 @@ ENV \
   LC_ALL=zh_CN.UTF-8 \
   TZ=Asia/Shanghai
 
-COPY ./entrypoint.sh /
 ENTRYPOINT [ "/entrypoint.sh" ]
 
 VOLUME /WechatFiles

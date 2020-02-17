@@ -10,9 +10,11 @@ A Docker Image for Running Windows WeChat on Your Linux Desktop
 
 ## Features
 
-1. Tested under Ubuntu 19.10
+1. Developed & Tested under Ubuntu 19.10 (WIP...)
 
 ## Usage
+
+Under Construction...
 
 ## FAQ
 
