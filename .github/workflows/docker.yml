@@ -13,8 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: zbeekman/ShellCheck-Linter-Action@v1.0.1
-      - run: ./scripts/build.sh
-      - run: ./scripts/test.sh
+      - name: Build
+        run: ./scripts/build.sh
+      - name: Test
+        run: ./scripts/test.sh
     
   publish:
     name: Publish
