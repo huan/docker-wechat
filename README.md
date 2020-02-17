@@ -33,7 +33,7 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 
 ### master
 
-### v0.0.1 (Feb 17, 2020)
+### v0.1 (Feb 17, 2020)
 
 1. Inited.
 
