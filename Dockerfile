@@ -19,6 +19,7 @@ RUN apt-get update \
     winetricks:amd64 \
     \
     # https://github.com/wszqkzqk/deepin-wine-ubuntu/issues/188#issuecomment-554599956
+    # https://zj-linux-guide.readthedocs.io/zh_CN/latest/tool-install-configure/%5BUbuntu%5D%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/
     ttf-wqy-microhei \
     ttf-wqy-zenhei \
     xfonts-wqy \
@@ -55,8 +56,8 @@ RUN su user -c 'WINEARCH=win32 wine wineboot' \
   && su user -c 'winetricks -q riched20' \
   && rm -rf /etc/wgetrc \
   \
-  && su user -c "wine regedit.exe /s '/home/user/.wine/drive_c/Program Files/Tencent/WeChat/install.reg'" \
-  && rm -rf /home/user/.cache/ /home/user/tmp/* \
+  && su user -c 'wine regedit.exe /s "C:\\Program Files\\Tencent\\WeChat\\install.reg"' \
+  && rm -rf /home/user/.cache/ /home/user/tmp/* /tmp/* \
   && echo "Wine: initialized"
 
 ENV \
