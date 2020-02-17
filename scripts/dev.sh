@@ -4,13 +4,15 @@ set -eo pipefail
 set -x
 
 #  --privileged \
+  # --ipc=host \
+
 
 docker run \
   --name wechat \
   --rm \
   -ti \
   \
-  -v $HOME/WeChatFiles:/WeChatFiles \
+  -v $HOME/WeChatFiles:/home/user/WeChatFiles \
   \
   -e DISPLAY=unix$DISPLAY \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -26,4 +28,5 @@ docker run \
   -e GID=`id -g` \
   -e UID=`id -u` \
   \
+  --entrypoint /bin/bash \
   wechat

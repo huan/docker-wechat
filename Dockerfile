@@ -15,6 +15,14 @@ RUN dpkg --add-architecture i386 \
 
 RUN apt-get update \
   && apt-get install -y \
+    wine32:i386 \
+    winetricks:amd64 \
+    \
+    # https://github.com/wszqkzqk/deepin-wine-ubuntu/issues/188#issuecomment-554599956
+    ttf-wqy-microhei \
+    ttf-wqy-zenhei \
+    xfonts-wqy \
+    \
     apt-transport-https:amd64 \
     ca-certificates:amd64 \
     cabextract:amd64 \
@@ -23,8 +31,6 @@ RUN apt-get update \
     tzdata:amd64 \
     unzip:amd64 \
     wget:amd64 \
-    wine32:i386 \
-    winetricks:amd64 \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -fr /tmp/*
@@ -34,17 +40,23 @@ RUN groupadd group \
   && chsh -s /bin/bash user \
   && echo "User created"
 
-COPY ./container-root/ /
-RUN chown -R user:group /home/user
+COPY --chown=user:group ./container_root/ /
+
+RUN ls -la /home/
+RUN ls -l /entrypoint.sh
+RUN chown -v user.group /entrypoint.sh
+RUN ls -l /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
+
+RUN chown -Rv user:group /home/user
 
 RUN su user -c 'WINEARCH=win32 wine wineboot' \
-  && echo 'Wine: booted' \
   \
   && echo 'quiet=on' > /etc/wgetrc \
   && su user -c 'winetricks -q win7' \
   && su user -c 'winetricks -q riched20' \
   && rm -rf /etc/wgetrc \
-  && echo "winetricks: Initialized"
   \
   && rm -rf /home/user/.cache/ /home/user/tmp/* \
   && echo "Wine: initialized"
