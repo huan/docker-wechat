@@ -4,16 +4,16 @@ set -e
 set -x
 
 if [ -n "$AUDIO_GID" ]; then
-  groupmod -o -g $AUDIO_GID audio
+  groupmod -o -g "$AUDIO_GID" audio
 fi
 if [ -n "$VIDEO_GID" ]; then 
-  groupmod -o -g $VIDEO_GID video
+  groupmod -o -g "$VIDEO_GID" video
 fi
-if [ $GID != $(echo `id -g user`) ]; then
-    groupmod -o -g $GID group
+if [ "$GID" != "$(id -g user)" ]; then
+    groupmod -o -g "$GID" group
 fi
-if [ $UID != $(echo `id -u user`) ]; then
-    usermod -o -u $UID user
+if [ "$UID" != "$(id -u user)" ]; then
+    usermod -o -u "$UID" user
 fi
 
 # FileSavePath

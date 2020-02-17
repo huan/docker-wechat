@@ -42,13 +42,6 @@ RUN groupadd group \
 
 COPY --chown=user:group ./container_root/ /
 
-RUN ls -la /home/
-RUN ls -l /entrypoint.sh
-RUN chown -v user.group /entrypoint.sh
-RUN ls -l /entrypoint.sh
-
-RUN chown -Rv user:group /home/user
-
 RUN su user -c 'WINEARCH=win32 wine wineboot' \
   \
   && echo 'quiet=on' > /etc/wgetrc \
@@ -64,6 +57,7 @@ ENV \
   LC_ALL=zh_CN.UTF-8 \
   TZ=Asia/Shanghai
 
-VOLUME /WechatFiles
-
+COPY ./entrypoint.sh /
 ENTRYPOINT [ "/entrypoint.sh" ]
+
+VOLUME /WechatFiles
