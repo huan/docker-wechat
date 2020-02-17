@@ -10,16 +10,20 @@ A Docker Image for Running Windows WeChat on Your Linux Desktop
 
 ## Features
 
-1. Developed & Tested under Ubuntu 19.10
-1. Display Chinese Characters
-1. Input Chinese Characters
-1. Paste Images to WeChat
+It just works out-of-the-box with one-line of shell command!
+
+1. Input/Display Chinese characters perfectly.
+1. Paste copied images to WeChat with `Ctrl+V`
+
+## Requirements
+
+1. Developed & Tested under Ubuntu 19.10 Desktop (should be ok with 19.04/18.10/18.04)
 
 ## Usage
 
-### For Human
+### For Normal Human
 
-Start WeChat PC on your Linux desktop by one-line command:
+WeChat PC will be started on your Linux desktop by running the following one-line command:
 
 ```sh
 curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh | bash
@@ -27,11 +31,9 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh |
 
 Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
 
-### For Hard Core Hackers
+### For Hackers
 
-If you want to control everything by yourself, for example, you want to open multiple WeChat PC client on your desktop; then, you might want to learn the [wechat.sh](https://github.com/huan/docker-wechat/blob/master/wechat.sh) in our repository.
-
-You can also try to run the following docker command:
+If you want to control everything by yourself, for example, open multiple WeChat PC client on your desktop; then, you might want to inspect the [wechat.sh](https://github.com/huan/docker-wechat/blob/master/wechat.sh) in our repository and try the following docker command:
 
 ```sh
 docker run \
@@ -57,6 +59,8 @@ docker run \
   \
   zixia/wechat
 ```
+
+Modify it whatever you want to fulfill your needs.
 
 ## FAQ
 
