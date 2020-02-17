@@ -6,19 +6,25 @@ set -x
 #  --privileged \
   # --ipc=host \
 
+OPTIONS=()
+
+if [ -f /dev/snd ]; then
+  OPTIONS+=('--device /dev/snd')
+fi
+if [ -f /dev/video0 ]; then
+  OPTIONS+=('--device /dev/video0')
+fi
 
 docker run \
+  "${OPTIONS[@]}" \
   --name wechat \
   --rm \
   -ti \
   \
-  -v $HOME/WeChatFiles:/home/user/WeChatFiles \
+  -v /WeChatFiles:/home/user/WeChatFiles \
   \
   -e DISPLAY=unix$DISPLAY \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
-  \
-  --device /dev/snd \
-  --device /dev/video0 \
   \
   -e XMODIFIERS=@im=fcitx \
   -e GTK_IM_MODULE=fcitx \
@@ -28,5 +34,6 @@ docker run \
   -e GID=`id -g` \
   -e UID=`id -u` \
   \
+  -p 22:22 \
   --entrypoint /bin/bash \
   wechat

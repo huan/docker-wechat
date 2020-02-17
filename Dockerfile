@@ -47,8 +47,6 @@ RUN ls -l /entrypoint.sh
 RUN chown -v user.group /entrypoint.sh
 RUN ls -l /entrypoint.sh
 
-ENTRYPOINT [ "/entrypoint.sh" ]
-
 RUN chown -Rv user:group /home/user
 
 RUN su user -c 'WINEARCH=win32 wine wineboot' \
@@ -65,3 +63,7 @@ ENV \
   LANG=zh_CN.UTF-8 \
   LC_ALL=zh_CN.UTF-8 \
   TZ=Asia/Shanghai
+
+VOLUME /WechatFiles
+
+ENTRYPOINT [ "/entrypoint.sh" ]
