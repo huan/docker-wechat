@@ -43,6 +43,10 @@ RUN groupadd group \
 
 COPY --chown=user:group ./container_root/ /
 
+ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
+RUN curl -sL "$HOME_URL" | tar zxf - \
+  && chown -R user.group /home/user
+
 RUN su user -c 'WINEARCH=win32 wine wineboot' \
   \
   && echo 'quiet=on' > /etc/wgetrc \
