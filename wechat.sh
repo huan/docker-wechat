@@ -2,8 +2,6 @@
 
 set -eo pipefail
 
-set -x
-
 DOCKER_ARGS=()
 
 if [ -f /dev/snd ]; then
@@ -17,7 +15,7 @@ docker run \
   "${DOCKER_ARGS[@]}" \
   --name wechat \
   --rm \
-  -ti \
+  -i \
   \
   -v "$HOME/WeChatFiles:/WeChatFiles" \
   \
