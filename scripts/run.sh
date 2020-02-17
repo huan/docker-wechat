@@ -10,9 +10,9 @@ docker run \
   --rm \
   -ti \
   \
-  -v $HOME/WeChatFiles:/WeChatFiles \
+  -v "$HOME/WeChatFiles:/WeChatFiles" \
   \
-  -e DISPLAY=unix$DISPLAY \
+  -e DISPLAY="unix$DISPLAY" \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   \
   --device /dev/snd \
@@ -21,9 +21,9 @@ docker run \
   -e XMODIFIERS=@im=fcitx \
   -e GTK_IM_MODULE=fcitx \
   -e QT_IM_MODULE=fcitx \
-  -e AUDIO_GID=`getent group audio | cut -d: -f3` \
-  -e VIDEO_GID=`getent group video | cut -d: -f3` \
-  -e GID=`id -g` \
-  -e UID=`id -u` \
+  -e AUDIO_GID="$(getent group audio | cut -d: -f3)" \
+  -e VIDEO_GID="$(getent group video | cut -d: -f3)" \
+  -e GID="$(id -g)" \
+  -e UID="$(id -u)" \
   \
   wechat
