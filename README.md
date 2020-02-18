@@ -22,7 +22,8 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Requirements
 
-1. Developed & Tested under Ubuntu 19.10 Desktop (should be ok with 19.04/18.10/18.04)
+1. Ubuntu Linux Desktop (DoChat was developed under Ubuntu 19.10 Desktop, should be ok with 19.04/18.10/18.04, might be ok with other Linux distributions)
+1. Docker (run `sudo apt update && apt install docker.io` to install Docker if you are using Ubuntu)
 
 ## Usage
 
@@ -35,6 +36,8 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh |
 ```
 
 Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
+
+![DoChat Screenshot](https://huan.github.io/docker-wechat/images/screenshot.jpg)
 
 ### 2 For Hackers
 
