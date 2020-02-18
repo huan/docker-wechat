@@ -1,4 +1,4 @@
-# docker-wechat [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker)
+# docker-wechat [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker) ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
 
 [![dockeri.co](https://dockeri.co/image/zixia/wechat)](https://hub.docker.com/r/zixia/wechat/)
 
@@ -21,7 +21,7 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Usage
 
-### For Normal Human
+### 1 For Humans
 
 WeChat PC will be started on your Linux desktop by running the following one-line command:
 
@@ -31,7 +31,7 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh |
 
 Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
 
-### For Hackers
+### 2 For Hackers
 
 If you want to control everything by yourself, for example, open multiple WeChat PC client on your desktop; then, you might want to inspect the [wechat.sh](https://github.com/huan/docker-wechat/blob/master/wechat.sh) in our repository and try the following docker command:
 
@@ -64,7 +64,7 @@ Modify it whatever you want to fulfill your needs.
 
 ## FAQ
 
-### System Tray Icon with Gnome Desktop
+### 1 System Tray Icon with Gnome Desktop
 
 Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/extension/2311/topicons-plus/)
 
