@@ -49,6 +49,10 @@ RUN curl -sL "$HOME_URL" | tar zxf - \
   && chown -R user.group /home/user \
   && echo 'Artifacts: downlaoded'
 
+RUN ls -l /home
+
+ENV WINEPREFIX=/home/user/.wine
+
 RUN su user -c 'WINEARCH=win32 wine wineboot' \
   \
   && echo 'quiet=on' > /etc/wgetrc \
@@ -56,7 +60,8 @@ RUN su user -c 'WINEARCH=win32 wine wineboot' \
   && su user -c 'winetricks -q riched20' \
   && rm -rf /etc/wgetrc \
   \
-  && su user -c 'wine regedit.exe /s "C:\\Program Files\\Tencent\\WeChat\\install.reg"' \
+  && su user -c 'wine regedit.exe /s "C:\Program Files\Tencent\WeChat\install.reg"' \
+  && su user -c 'wine reg query "HKEY_CURRENT_USER\Software\Tencent\WeChat"' \
   && rm -rf /home/user/.cache/ /home/user/tmp/* /tmp/* \
   && echo "Wine: initialized"
 
