@@ -1,4 +1,3 @@
-
 #
 # Stage 1: Builder
 #
@@ -39,6 +38,8 @@ RUN apt-get update \
 
 RUN groupadd group \
   && useradd -m -g group user \
+  && usermod -a -G audio user \
+  && usermod -a -G video user \
   && chsh -s /bin/bash user \
   && echo 'User created'
 
@@ -49,20 +50,30 @@ RUN curl -sL "$HOME_URL" | tar zxf - \
   && chown -R user.group /home/user \
   && echo 'Artifacts: downlaoded'
 
-RUN ls -l /home
-
-ENV WINEPREFIX=/home/user/.wine
-
-RUN su user -c 'WINEARCH=win32 wine wineboot' \
+ARG GECKO_VER=2.47
+ARG MONO_VER=4.9.4
+RUN echo 'quiet=on' > /etc/wgetrc \
+  # Gecko & Mono
+  && mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
+    && wget https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine-gecko-${GECKO_VER}-x86.msi \
+        -O /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
+    # && wget https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}.msi \
+    #     -O /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
+  && chown -R user:group /usr/share/wine/gecko /usr/share/wine/mono \
+  && echo 'Gecko & Mono installed' \
   \
-  && echo 'quiet=on' > /etc/wgetrc \
+  su user -c 'WINEARCH=win32 wine wineboot' \
+  \
+  # wintricks
   && su user -c 'winetricks -q win7' \
   && su user -c 'winetricks -q riched20' \
-  && rm -rf /etc/wgetrc \
   \
+  # Regedit
   && su user -c 'wine regedit.exe /s "C:\Program Files\Tencent\WeChat\install.reg"' \
   && su user -c 'wine reg query "HKEY_CURRENT_USER\Software\Tencent\WeChat"' \
-  && rm -rf /home/user/.cache/ /home/user/tmp/* /tmp/* \
+  \
+  # Clean
+  && rm -rf /etc/wgetrc /home/user/.cache/* /home/user/tmp/* /tmp/* \
   && echo "Wine: initialized"
 
 ENV \
@@ -72,4 +83,22 @@ ENV \
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 
+RUN mkdir /WeChatFiles \
+  && rm -fr /home/user/WeChatFiles \
+  && ln -s /WeChatFiles /home/user/WeChatFiles \
+  && echo '/WeChatFiles created'
+
 VOLUME /WeChatFiles
+
+RUN su user -c 'wine regedit.exe /s "C:\Program Files\Tencent\WeChat\install.reg"' \
+  && su user -c 'wine reg query "HKEY_CURRENT_USER\Software\Tencent\WeChat"'
+
+LABEL \
+    org.opencontainers.image.authors="Huan (李卓桓) <zixia@zixia.net>" \
+    org.opencontainers.image.description="A Docker Image for Running PC Windows WeChat on Your Linux Desktop" \
+    org.opencontainers.image.documentation="https://github.com/huan/docker-wechat/#readme" \
+    org.opencontainers.image.licenses="Apache-2.0" \
+    org.opencontainers.image.source="git@github.com:huan/docker-wechat.git" \
+    org.opencontainers.image.title="docker-wechat" \
+    org.opencontainers.image.url="https://github.com/huan/docker-wechat" \
+    org.opencontainers.image.vendor="huan"

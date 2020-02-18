@@ -19,7 +19,7 @@ docker run \
   \
   -v "$HOME/WeChatFiles:/WeChatFiles" \
   \
-  -e DISPLAY="unix$DISPLAY" \
+  -e DISPLAY="$DISPLAY" \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   \
   -e XMODIFIERS=@im=fcitx \

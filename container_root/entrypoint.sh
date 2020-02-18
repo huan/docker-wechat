@@ -7,7 +7,7 @@ set -x
 # User Task
 #
 if [ "$(id -u)" -ne '0' ]; then
-  wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'
+  wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || true
   exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
 fi
 
@@ -18,7 +18,7 @@ fi
 if [ -n "$AUDIO_GID" ]; then
   groupmod -o -g "$AUDIO_GID" audio
 fi
-if [ -n "$VIDEO_GID" ]; then 
+if [ -n "$VIDEO_GID" ]; then
   groupmod -o -g "$VIDEO_GID" video
 fi
 if [ "$GID" != "$(id -g user)" ]; then

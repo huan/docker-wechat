@@ -23,7 +23,7 @@ docker run \
   \
   -v /WeChatFiles:/home/user/WeChatFiles \
   \
-  -e DISPLAY="unix$DISPLAY" \
+  -e DISPLAY="$DISPLAY" \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   \
   -e XMODIFIERS=@im=fcitx \
@@ -37,3 +37,6 @@ docker run \
   -p 22:22 \
   --entrypoint /bin/bash \
   wechat
+
+  # --ipc=host \
+  # --privileged \
