@@ -17,7 +17,8 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Known Issues
 
-1. No sound (to be fixed) ([#1](https://github.com/huan/docker-wechat/issues/1))
+- [ ] No Sound ([#1](https://github.com/huan/docker-wechat/issues/1))
+- [ ] In-WeChat Browser does not work ([#2](https://github.com/huan/docker-wechat/issues/2))
 
 ## Requirements
 
