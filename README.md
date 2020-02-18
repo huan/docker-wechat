@@ -17,7 +17,7 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Requirements
 
-1. Ubuntu Linux Desktop (DoChat was developed under Ubuntu 19.10 Desktop, should be ok with 19.04/18.10/18.04, might be ok with other Linux distributions)
+1. Ubuntu Linux desktop (DoChat was developed under Ubuntu 19.10 desktop, should be ok with 19.04/18.10/18.04, might be ok with other Linux distributions)
 1. Docker (run `sudo apt update && apt install docker.io` to install Docker for Ubuntu users)
 
 ## Usage
