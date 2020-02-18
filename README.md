@@ -19,12 +19,17 @@ It just works out-of-the-box with one-line of shell command!
 
 - [ ] No Sound ([#1](https://github.com/huan/docker-wechat/issues/1))
 - [ ] In-WeChat Browser does not work ([#2](https://github.com/huan/docker-wechat/issues/2))
+
+## To-do List
+
 - [ ] Permanent Storage for WeChat PC Login Data Information ([#3](https://github.com/huan/docker-wechat/issues/3))
+- [ ] Automatically install WeChat PC from .EXE installer when building the Dockerfile. (Test Automation tools might be needed)
+- [ ] Monitor WeChat PC version publications so that we can publish the same version number of the docker image with it.
 
 ## Requirements
 
 1. Ubuntu Linux Desktop (DoChat was developed under Ubuntu 19.10 Desktop, should be ok with 19.04/18.10/18.04, might be ok with other Linux distributions)
-1. Docker (run `sudo apt update && apt install docker.io` to install Docker if you are using Ubuntu)
+1. Docker (run `sudo apt update && apt install docker.io` to install Docker for Ubuntu users)
 
 ## Usage
 
@@ -94,7 +99,7 @@ The first working version, cheers!
 
 ### v0.1 (Feb 17, 2020)
 
-1. Inited.
+Project created.
 
 ## Thanks
 
