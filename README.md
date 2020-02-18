@@ -26,7 +26,7 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Usage
 
-### 1 For Humans
+### 1 For Humans 💖
 
 WeChat PC will be started on your Linux desktop by running the following one-line command:
 
@@ -83,6 +83,10 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 ## History
 
 ### master
+
+### v0.2 (Feb 18, 2020)
+
+The first working version, cheers!
 
 ### v0.1 (Feb 17, 2020)
 
