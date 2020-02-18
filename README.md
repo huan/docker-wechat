@@ -19,6 +19,7 @@ It just works out-of-the-box with one-line of shell command!
 
 - [ ] No Sound ([#1](https://github.com/huan/docker-wechat/issues/1))
 - [ ] In-WeChat Browser does not work ([#2](https://github.com/huan/docker-wechat/issues/2))
+- [ ] Permanent Storage for WeChat PC Login Data Information ([#3](https://github.com/huan/docker-wechat/issues/3))
 
 ## Requirements
 
