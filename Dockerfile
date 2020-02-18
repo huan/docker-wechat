@@ -55,14 +55,14 @@ ARG MONO_VER=4.9.4
 RUN echo 'quiet=on' > /etc/wgetrc \
   # Gecko & Mono
   && mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
-    && wget https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine-gecko-${GECKO_VER}-x86.msi \
+    && wget https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86.msi \
         -O /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
     # && wget https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}.msi \
     #     -O /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
   && chown -R user:group /usr/share/wine/gecko /usr/share/wine/mono \
   && echo 'Gecko & Mono installed' \
   \
-  su user -c 'WINEARCH=win32 wine wineboot' \
+  && su user -c 'WINEARCH=win32 wine wineboot' \
   \
   # wintricks
   && su user -c 'winetricks -q win7' \
@@ -91,7 +91,8 @@ RUN mkdir /WeChatFiles \
 VOLUME /WeChatFiles
 
 RUN su user -c 'wine regedit.exe /s "C:\Program Files\Tencent\WeChat\install.reg"' \
-  && su user -c 'wine reg query "HKEY_CURRENT_USER\Software\Tencent\WeChat"'
+  && su user -c 'wine reg query "HKEY_CURRENT_USER\Software\Tencent\WeChat"' \
+  && echo 'Regedit: inited'
 
 LABEL \
     org.opencontainers.image.authors="Huan (李卓桓) <zixia@zixia.net>" \
