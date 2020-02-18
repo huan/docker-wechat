@@ -31,11 +31,13 @@ EOF
 }
 
 function update () {
+  echo
   echo '🚀 Pulling the latest docker image...'
   echo
   docker pull zixia/wechat
   echo
   echo '🚀 Pulling the latest docker image done.'
+  echo
 }
 
 function main () {
@@ -44,7 +46,10 @@ function main () {
     DEVICE_ARG+=('--device' "$DEVICE")
   done
 
+  echo
   echo '🚀 Starting DoChat...'
+  echo
+
   #
   # --privileged: For Sound (/dev/snd/ permission)
   # --ipc=host:   MIT_SHM (?)
@@ -69,7 +74,9 @@ function main () {
     -e GID="$(id -g)" \
     -e UID="$(id -u)" \
     \
+    --ipc=host \
     --privileged \
+    \
     zixia/wechat
 
     echo "🚀 DoChat Exited with code $?"
