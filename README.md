@@ -6,7 +6,7 @@
 
 > Image Credit: [Docker 101](https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/) + [Icon Finder](https://www.iconfinder.com/icons/4539886/application_chat_communication_wechat_wechat_logo_icon)
 
-A Docker Image for Running Windows WeChat on Your Linux Desktop
+DoChat is a Docker Image for Running Windows WeChat on Your Linux Desktop with One-line Command.
 
 ## Features
 
@@ -14,6 +14,10 @@ It just works out-of-the-box with one-line of shell command!
 
 1. Input/Display Chinese characters perfectly.
 1. Paste copied images to WeChat with `Ctrl+V`
+
+## Known Issues
+
+1. No sound (to be fixed) ([#1](https://github.com/huan/docker-wechat/issues/1))
 
 ## Requirements
 

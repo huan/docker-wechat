@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-
+#
+#   Author: Huan (李卓桓) <zixia@zixia.net>
+#   Copyright (c) 2020-now
+#
+#   License: Apache-2.0
+#   GitHub: https://github.com/huan/docker-wechat
+#
 set -eo pipefail
 
 function hello () {
@@ -9,24 +15,26 @@ function hello () {
       | | | |/ _ \| |   | '_ \ / _` | __|
       | |_| | (_) | |___| | | | (_| | |_
       |____/ \___/ \____|_| |_|\__,_|\__|
-
-      http://github.com/huan/docker-wechat
-      ____________________________________
-      ------------------------------------
+   __________________________________________
+  |\_________________________________________\
+  | | http://github.com/huan/docker-wechat   |
+   \|________________________________________|
 
       DoChat (Docker-weChat) is:
 
       📦 a Docker Image
       🤐 for Running PC Windows WeChat
       💻 on Your Linux Desktop
-      💖 with One-Line command
+      💖 by One-Line command
 
 EOF
 }
 
 function update () {
   echo '🚀 Pulling the latest docker image...'
+  echo
   docker pull zixia/wechat
+  echo
   echo '🚀 Pulling the latest docker image done.'
 }
 
@@ -50,6 +58,7 @@ function main () {
     -v "$HOME/WeChatFiles:/WeChatFiles" \
     \
     -e DISPLAY="$DISPLAY" \
+    -e DOCHAT_DEBUG="$DOCHAT_DEBUG" \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     \
     -e XMODIFIERS=@im=fcitx \

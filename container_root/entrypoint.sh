@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
-set -e
+set -eo pipefail
+
+[[ $DOCHAT_DEBUG == true ]] && set -x
 
 #
 # User Task
 #
 if [ "$(id -u)" -ne '0' ]; then
-  wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || true
-  exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
+  if [[ $DOCHAT_DEBUG == true ]]; then
+    wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || true
+    exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
+  else
+    exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null
+  fi
 fi
 
 #
