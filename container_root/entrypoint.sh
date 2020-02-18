@@ -8,7 +8,7 @@ set -eo pipefail
 # User Task
 #
 if [ "$(id -u)" -ne '0' ]; then
-  if [ -n "$DOCHAT_DEBUG" ]]; then
+  if [ -n "$DOCHAT_DEBUG" ]; then
     wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || true
     exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
   else
