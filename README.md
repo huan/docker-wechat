@@ -1,4 +1,4 @@
-# docker-wechat [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker) ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
+# DoChat [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker) ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
 
 [![dockeri.co](https://dockeri.co/image/zixia/wechat)](https://hub.docker.com/r/zixia/wechat/)
 

@@ -6,17 +6,13 @@ set -x
 #  --privileged \
   # --ipc=host \
 
-OPTIONS=()
-
-if [ -f /dev/snd ]; then
-  OPTIONS+=('--device /dev/snd')
-fi
-if [ -f /dev/video0 ]; then
-  OPTIONS+=('--device /dev/video0')
-fi
+DEVICE_ARG=()
+for DEVICE in /dev/video* /dev/snd; do
+  DEVICE_ARG+=('--device' "$DEVICE")
+done
 
 docker run \
-  "${OPTIONS[@]}" \
+  "${DEVICE_ARG[@]}" \
   --name wechat \
   --rm \
   -ti \
@@ -36,7 +32,5 @@ docker run \
   \
   -p 22:22 \
   --entrypoint /bin/bash \
+  --privileged \
   wechat
-
-  # --ipc=host \
-  # --privileged \
