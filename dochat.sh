@@ -54,7 +54,7 @@ function main () {
   done
 
   echo
-  echo '🚀 Starting DoChat...'
+  echo '🚀 Starting DoChat /dɑɑˈtʃæt/ ...'
   echo
 
   #
