@@ -31,6 +31,10 @@ EOF
 }
 
 function update () {
+  if [ -n "$DOCHAT_SKIP_UPDATE" ]; then
+    return
+  fi
+
   echo
   echo '🚀 Pulling the latest docker image...'
   echo
