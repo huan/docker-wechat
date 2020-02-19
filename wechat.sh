@@ -10,6 +10,7 @@ set -eo pipefail
 
 function hello () {
   cat <<'EOF'
+
        ____         ____ _           _
       |  _ \  ___  / ___| |__   __ _| |_
       | | | |/ _ \| |   | '_ \ / _` | __|
