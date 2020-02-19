@@ -16,7 +16,6 @@ RUN dpkg --add-architecture i386 \
 RUN apt-get update \
   && apt-get install -y \
     wine32:i386 \
-    winetricks:amd64 \
     \
     # https://github.com/wszqkzqk/deepin-wine-ubuntu/issues/188#issuecomment-554599956
     # https://zj-linux-guide.readthedocs.io/zh_CN/latest/tool-install-configure/%5BUbuntu%5D%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/
@@ -59,6 +58,11 @@ RUN mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
   #     -O /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
   && chown -R user:group /usr/share/wine/gecko /usr/share/wine/mono \
   && echo 'Gecko & Mono installed'
+
+RUN curl -sL -o /usr/local/bin/winetricks \
+    https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
+  && chmod +x /usr/local/bin/winetricks \
+  && echo 'winetricks installed'
 
 USER user
 
