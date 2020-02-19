@@ -18,17 +18,17 @@ function hello () {
       | | | |/ _ \| |   | '_ \ / _` | __|
       | |_| | (_) | |___| | | | (_| | |_
       |____/ \___/ \____|_| |_|\__,_|\__|
-    ________________________________________
-   |\_______________________________________\
-   | | http://github.com/huan/docker-wechat |
-    \|______________________________________|
+    _________________________________________
+   |\________________________________________\
+   | | https://github.com/huan/docker-wechat |
+    \|_______________________________________|
 
       DoChat /dɑɑˈtʃæt/ (Docker-weChat) is:
 
-      📦 a Docker Image
-      🤐 for Running PC Windows WeChat
-      💻 on Your Linux Desktop
-      💖 by One-Line command
+      📦 a Docker image
+      🤐 for running Windows WeChat PC
+      💻 on your Linux desktop
+      💖 by one-line command
 
 EOF
 }
