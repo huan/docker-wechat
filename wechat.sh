@@ -64,7 +64,8 @@ function main () {
     --rm \
     -i \
     \
-    -v "$HOME/WeChat Files/":'/home/user/WeChat Files/' \
+    -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
+    -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
     \
     -e DISPLAY="$DISPLAY" \
     -e DOCHAT_DEBUG="$DOCHAT_DEBUG" \

@@ -10,7 +10,8 @@ docker run \
   --rm \
   -ti \
   \
-  -v "$HOME/WeChat Files/":'/home/user/WeChat Files/' \
+  -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
+  -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
   \
   -e DISPLAY="$DISPLAY" \
   -v /tmp/.X11-unix:/tmp/.X11-unix \

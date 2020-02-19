@@ -33,16 +33,13 @@ if [ "$UID" != "$(id -u user)" ]; then
     usermod -o -u "$UID" user
 fi
 
-# FileSavePath
-chown user:group '/home/user/WeChat Files'
+chown user:group \
+  '/home/user/.wine/drive_c/users/user/Application Data' \
+  '/home/user/WeChat Files'
 
 export HOSTNAME=DoChat
 echo "$HOSTNAME" > /etc/hostname
 hostname "$HOSTNAME"
-
-# wine reg DELETE 'HKCU\Software\Tencent\WeChat' UpdateFailCnt /f &> /dev/null
-# wine reg DELETE 'HKCU\Software\Tencent\WeChat' NeedUpdateType /f &> /dev/null
-# rm "${WINEPREFIX}/drive_c/users/${USER}/Application Data/Tencent/WeChat/All Users/config/configEx.ini"
 
 #
 # Switch to user:group, and re-run self to run user task
