@@ -4,7 +4,7 @@
 
 ![Docker Wechat](https://huan.github.io/docker-wechat/images/docker-wechat.png)
 
-> Image Credit: [Docker 101](https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/) + [Icon Finder](https://www.iconfinder.com/icons/4539886/application_chat_communication_wechat_wechat_logo_icon)
+> Image Credit: [Docker 101](https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/) + [Icon Finder](https://www.iconfinder.com/icons/4539886/application_chat_communication_wechat_wechat_logo_icon), and Ps-ed by Ruoxin Song
 
 ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
 
