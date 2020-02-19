@@ -1,11 +1,12 @@
 #
 # Stage 1: Builder
 #
-FROM ubuntu:eoan as Builder
+FROM ubuntu:eoan
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV LANG='C.UTF-8' \
+ENV \
+  LANG='C.UTF-8' \
   LC_ALL='C.UTF-8' \
   WINEDEBUG=-all
 
@@ -31,7 +32,6 @@ RUN apt-get update \
     language-pack-zh-hans \
     tzdata:amd64 \
     unzip:amd64 \
-    wget:amd64 \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -fr /tmp/*
@@ -52,28 +52,28 @@ RUN curl -sL "$HOME_URL" | tar zxf - \
 
 ARG GECKO_VER=2.47
 ARG MONO_VER=4.9.4
-RUN echo 'quiet=on' > /etc/wgetrc \
-  # Gecko & Mono
-  && mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
-    && wget https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86.msi \
-        -O /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
-    # && wget https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}.msi \
-    #     -O /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
+RUN mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
+  && curl -sL -o /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
+    "https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86.msi" \
+  # && wget https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}.msi \
+  #     -O /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
   && chown -R user:group /usr/share/wine/gecko /usr/share/wine/mono \
-  && echo 'Gecko & Mono installed' \
-  \
-  && su user -c 'WINEARCH=win32 wine wineboot' \
+  && echo 'Gecko & Mono installed'
+
+USER user
+
+RUN WINEARCH=win32 wine wineboot \
   \
   # wintricks
-  && su user -c 'winetricks -q win7' \
-  && su user -c 'winetricks -q riched20' \
+  && winetricks -q win7 \
+  && winetricks -q riched20 \
   \
   # Regedit
-  && su user -c 'wine regedit.exe /s "C:\Program Files\Tencent\WeChat\install.reg"' \
-  && su user -c 'wine reg query "HKEY_CURRENT_USER\Software\Tencent\WeChat"' \
+  && wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg' \
+  && wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' \
   \
   # Clean
-  && rm -rf /etc/wgetrc /home/user/.cache/* /home/user/tmp/* /tmp/* \
+  && rm -fr /home/user/.cache/* /home/user/tmp/* /tmp/* \
   && echo "Wine: initialized"
 
 ENV \
@@ -81,18 +81,13 @@ ENV \
   LC_ALL=zh_CN.UTF-8 \
   TZ=Asia/Shanghai
 
+VOLUME "/home/user/WeChat Files"
+
+# FIXME: reg set success or not ???
+RUN wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'
+
+USER root
 ENTRYPOINT [ "/entrypoint.sh" ]
-
-RUN mkdir /WeChatFiles \
-  && rm -fr /home/user/WeChatFiles \
-  && ln -s /WeChatFiles /home/user/WeChatFiles \
-  && echo '/WeChatFiles created'
-
-VOLUME /WeChatFiles
-
-RUN su user -c 'wine regedit.exe /s "C:\Program Files\Tencent\WeChat\install.reg"' \
-  && su user -c 'wine reg query "HKEY_CURRENT_USER\Software\Tencent\WeChat"' \
-  && echo 'Regedit: inited'
 
 LABEL \
     org.opencontainers.image.authors="Huan (李卓桓) <zixia@zixia.net>" \
