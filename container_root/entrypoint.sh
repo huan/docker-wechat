@@ -36,6 +36,10 @@ fi
 # FileSavePath
 chown user:group '/home/user/WeChat Files'
 
+export HOSTNAME=DoChat
+echo "$HOSTNAME" > /etc/hostname
+hostname "$HOSTNAME"
+
 # wine reg DELETE 'HKCU\Software\Tencent\WeChat' UpdateFailCnt /f &> /dev/null
 # wine reg DELETE 'HKCU\Software\Tencent\WeChat' NeedUpdateType /f &> /dev/null
 # rm "${WINEPREFIX}/drive_c/users/${USER}/Application Data/Tencent/WeChat/All Users/config/configEx.ini"
