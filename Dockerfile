@@ -81,10 +81,10 @@ ENV \
   LC_ALL=zh_CN.UTF-8 \
   TZ=Asia/Shanghai
 
-VOLUME "/home/user/WeChat Files"
+VOLUME [ "/home/user/WeChat Files" ]
 
 # FIXME: reg set success or not ???
-RUN wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'
+RUN wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo "Graceful FAIL. REG NOT FOUND"
 
 USER root
 ENTRYPOINT [ "/entrypoint.sh" ]

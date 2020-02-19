@@ -83,7 +83,7 @@ function main () {
     \
     zixia/wechat
 
-    echo "🚀 DoChat Exited with code $?"
+    echo "📦 DoChat Exited with code [$?]"
     echo
     echo '🐞 Bug Report: https://github.com/huan/docker-wechat/issues'
     echo
