@@ -29,7 +29,7 @@ It just works out-of-the-box with one-line of shell command!
 WeChat PC will be started on your Linux desktop by running the following one-line command:
 
 ```sh
-curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh | bash
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh | bash
 ```
 
 Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
@@ -38,7 +38,7 @@ Just copy/paste the above one-line command to your terminal and press Enter. The
 
 ### 2 For Hackers
 
-If you want to control everything by yourself, for example, open multiple WeChat PC client on your desktop; then, you might want to inspect the [wechat.sh](https://github.com/huan/docker-wechat/blob/master/wechat.sh) in our repository and try the following docker command:
+If you want to control everything by yourself, for example, open multiple WeChat PC client on your desktop; then, you might want to inspect the [dochat.sh](https://github.com/huan/docker-wechat/blob/master/dochat.sh) in our repository and try the following docker command:
 
 ```sh
 docker run \
@@ -74,14 +74,14 @@ Modify it whatever you want to fulfill your needs.
 If you do not want to update docker image at startup everytime, you can set `DOCHAT_SKIP_UPDATE` environment variable.
 
 ```sh
-curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh \
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
   | DOCHAT_SKIP_UPDATE=true bash
 ```
 
-In case you have downloaded `wechat.sh`:
+In case you have downloaded `dochat.sh`:
 
 ```sh
-DOCHAT_SKIP_UPDATE=true ./wechat.sh
+DOCHAT_SKIP_UPDATE=true ./dochat.sh
 ```
 
 #### `DOCHAT_DEBUG`
@@ -89,7 +89,7 @@ DOCHAT_SKIP_UPDATE=true ./wechat.sh
 Show more debug log messages.
 
 ```sh
-curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh \
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
   | DOCHAT_DEBUG=true bash
 ```
 

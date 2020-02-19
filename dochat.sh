@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #
+# dochat.sh - Docker WeChat for Linux
+#
 #   Author: Huan (李卓桓) <zixia@zixia.net>
 #   Copyright (c) 2020-now
 #
@@ -56,8 +58,8 @@ function main () {
   echo
 
   #
-  # --privileged: For Sound (/dev/snd/ permission)
-  # --ipc=host:   MIT_SHM (?)
+  # --privileged: enable sound (/dev/snd/)
+  # --ipc=host:   enable MIT_SHM (XWindows)
   #
   docker run \
     "${DEVICE_ARG[@]}" \
@@ -67,10 +69,10 @@ function main () {
     \
     -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
     -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
     \
     -e DISPLAY="$DISPLAY" \
     -e DOCHAT_DEBUG="$DOCHAT_DEBUG" \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
     \
     -e XMODIFIERS=@im=fcitx \
     -e GTK_IM_MODULE=fcitx \
