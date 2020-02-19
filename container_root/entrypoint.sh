@@ -34,7 +34,7 @@ if [ "$UID" != "$(id -u user)" ]; then
 fi
 
 # FileSavePath
-chown user:group /WeChatFiles
+chown user:group '/home/user/WeChat Files'
 
 # wine reg DELETE 'HKCU\Software\Tencent\WeChat' UpdateFailCnt /f &> /dev/null
 # wine reg DELETE 'HKCU\Software\Tencent\WeChat' NeedUpdateType /f &> /dev/null

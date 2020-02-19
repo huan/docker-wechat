@@ -64,7 +64,7 @@ function main () {
     --rm \
     -i \
     \
-    -v "$HOME/WeChatFiles:/WeChatFiles" \
+    -v "$HOME/WeChat Files/":'/home/user/WeChat Files/' \
     \
     -e DISPLAY="$DISPLAY" \
     -e DOCHAT_DEBUG="$DOCHAT_DEBUG" \
