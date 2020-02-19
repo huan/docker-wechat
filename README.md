@@ -98,7 +98,7 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh \
 
 ## To-do List
 
-- [ ] Permanent Storage for WeChat PC Login Data Information ([#3](https://github.com/huan/docker-wechat/issues/3))
+- [x] Permanent Storage for WeChat PC Login Data Information ([#3](https://github.com/huan/docker-wechat/issues/3))
 - [ ] Automatically install WeChat PC from .EXE installer when building the Dockerfile. (Test Automation tools might be needed)
 - [ ] Monitor WeChat PC version publications so that we can publish the same version number of the docker image with it.
 
