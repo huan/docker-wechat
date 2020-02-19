@@ -13,7 +13,7 @@ done
 
 docker run \
   "${DEVICE_ARG[@]}" \
-  --name DoChat \
+  --name DoChatDev \
   --rm \
   -ti \
   \
@@ -21,6 +21,7 @@ docker run \
   -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
   \
   -e DISPLAY="$DISPLAY" \
+  -e DOCHAT_DEBUG="$DOCHAT_DEBUG" \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   \
   -e XMODIFIERS=@im=fcitx \
@@ -31,7 +32,10 @@ docker run \
   -e GID="$(id -g)" \
   -e UID="$(id -u)" \
   \
+  --privileged \
+  --ipc=host \
+  \
   -p 22:22 \
   --entrypoint /bin/bash \
-  --privileged \
+  \
   wechat

@@ -39,7 +39,7 @@ chown user:group \
 
 export HOSTNAME=DoChat
 echo "$HOSTNAME" > /etc/hostname
-hostname "$HOSTNAME"
+# hostname "$HOSTNAME" # --privileged required
 
 #
 # Switch to user:group, and re-run self to run user task
