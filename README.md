@@ -1,10 +1,12 @@
-# DoChat [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker) ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
+# DoChat /dɑɑˈtʃæt/ [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker)
 
 [![dockeri.co](https://dockeri.co/image/zixia/wechat)](https://hub.docker.com/r/zixia/wechat/)
 
 ![Docker Wechat](https://huan.github.io/docker-wechat/images/docker-wechat.png)
 
 > Image Credit: [Docker 101](https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/) + [Icon Finder](https://www.iconfinder.com/icons/4539886/application_chat_communication_wechat_wechat_logo_icon)
+
+![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
 
 Run WeChat PC Windows client on your Linux desktop with Docker.
 
