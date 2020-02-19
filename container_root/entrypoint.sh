@@ -9,7 +9,7 @@ set -eo pipefail
 #
 if [ "$(id -u)" -ne '0' ]; then
   if [ -n "$DOCHAT_DEBUG" ]; then
-    wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || true
+    wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Register for Wechat not found ?'
     exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
   else
     exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null

@@ -40,7 +40,7 @@ If you want to control everything by yourself, for example, open multiple WeChat
 
 ```sh
 docker run \
-  --name wechat \
+  --name DoChat \
   --rm \
   -i \
   \

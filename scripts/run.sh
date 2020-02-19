@@ -6,7 +6,7 @@ set -x
 #  --privileged \
 
 docker run \
-  --name wechat \
+  --name DoChat \
   --rm \
   -ti \
   \

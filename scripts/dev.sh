@@ -13,7 +13,7 @@ done
 
 docker run \
   "${DEVICE_ARG[@]}" \
-  --name wechat \
+  --name DoChat \
   --rm \
   -ti \
   \

@@ -60,7 +60,7 @@ function main () {
   #
   docker run \
     "${DEVICE_ARG[@]}" \
-    --name wechat \
+    --name DoChat \
     --rm \
     -i \
     \
