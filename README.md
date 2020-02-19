@@ -65,6 +65,32 @@ docker run \
 
 Modify it whatever you want to fulfill your needs.
 
+### 3 Environment Variables
+
+#### `DOCHAT_SKIP_UPDATE`
+
+If you do not want to update docker image at startup everytime, you can set `DOCHAT_SKIP_UPDATE` environment variable.
+
+```sh
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh \
+  | DOCHAT_SKIP_UPDATE=true bash
+```
+
+In case you have downloaded `wechat.sh`:
+
+```sh
+DOCHAT_SKIP_UPDATE=true ./wechat.sh
+```
+
+#### `DOCHAT_DEBUG`
+
+Show more debug log messages.
+
+```sh
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/wechat.sh \
+  | DOCHAT_DEBUG=true bash
+```
+
 ## Known Issues
 
 - [ ] No Sound ([#1](https://github.com/huan/docker-wechat/issues/1))
