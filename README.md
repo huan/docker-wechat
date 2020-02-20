@@ -8,7 +8,7 @@
 
 ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
 
-DoChat is a Dockerized WeChat(微信) PC Windows Client for Linux.
+DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux.
 
 ## Features
 
