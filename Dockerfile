@@ -67,9 +67,12 @@ RUN WINEARCH=win32 wine wineboot \
   && rm -fr /home/user/.cache/* /home/user/tmp/* /tmp/* \
   && echo 'Wine: initialized'
 
+USER root
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
 RUN curl -sL "$HOME_URL" | tar zxf - \
+  && chown -R user:group /home/user \
   && echo 'Artifacts: downlaoded'
+USER user
 
 RUN wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg' \
   && wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' \
