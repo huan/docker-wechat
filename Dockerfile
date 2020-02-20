@@ -3,8 +3,8 @@ FROM ubuntu:eoan
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV \
-  LANG=zh_CN.UTF-8 \
-  LC_ALL=zh_CN.UTF-8 \
+  LANG=en_US.UTF-8 \
+  LC_ALL=en_US.UTF-8 \
   TZ=Asia/Shanghai \
   WINEDEBUG=-all
 
@@ -88,6 +88,10 @@ VOLUME [\
 
 COPY entrypoint.sh /
 ENTRYPOINT [ "/entrypoint.sh" ]
+
+ENV \
+  LANG=zh_CN.UTF-8 \
+  LC_ALL=zh_CN.UTF-8
 
 LABEL \
     org.opencontainers.image.authors="Huan (李卓桓) <zixia@zixia.net>" \
