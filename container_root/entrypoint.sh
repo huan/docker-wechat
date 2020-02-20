@@ -39,7 +39,12 @@ chown user:group \
 
 export HOSTNAME=DoChat
 echo "$HOSTNAME" > /etc/hostname
-# hostname "$HOSTNAME" # --privileged required
+
+#
+# Change the hostname for the wine runtime
+# --privileged required
+#
+hostname "$HOSTNAME"
 
 #
 # Switch to user:group, and re-run self to run user task
