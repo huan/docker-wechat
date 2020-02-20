@@ -67,11 +67,8 @@ RUN WINEARCH=win32 wine wineboot \
   && rm -fr /home/user/.cache/* /home/user/tmp/* /tmp/* \
   && echo 'Wine: initialized'
 
-USER root
-
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
 RUN curl -sL "$HOME_URL" | tar zxf - \
-  && chown -R user.group /home/user \
   && echo 'Artifacts: downlaoded'
 
 RUN wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg' \
@@ -85,6 +82,8 @@ VOLUME [\
   "/home/user/WeChat Files", \
   "/home/user/.wine/drive_c/users/user/Application Data" \
 ]
+
+USER root
 
 COPY entrypoint.sh /
 ENTRYPOINT [ "/entrypoint.sh" ]
