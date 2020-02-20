@@ -1,4 +1,4 @@
-# DoChat /dɑɑˈtʃæt/ [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker)
+# DoChat /dɑɑˈtʃæt/ 盒装微信 [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker)
 
 [![dockeri.co](https://dockeri.co/image/zixia/wechat)](https://hub.docker.com/r/zixia/wechat/)
 
@@ -8,7 +8,7 @@
 
 ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
 
-Run WeChat PC Windows client on your Linux desktop with Docker.
+DoChat is a Dockerized WeChat(微信) PC Windows Client for Linux.
 
 ## Features
 
@@ -115,7 +115,7 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 - [Input Method don't work when using X11Forward](https://ubuntuforums.org/showthread.php?t=913752)
 - [Input method related environment variables](https://fcitx-im.org/wiki/Input_method_related_environment_variables)
 - [Docker GUI最佳实践](https://github.com/zjZSTU/Containerization-Automation/blob/982d54458b05ef75fe6436f4ea72bbb66c4cb931/docs/docker/gui/%5BDocker%5DGUI最佳实践.md)
-- [Linux 下 完美运行 wechat](https://www.kpromise.top/run-wechat-in-linux/)
+- [Linux 下 完美运行 wechat 微信](https://www.kpromise.top/run-wechat-in-linux/)
 
 ## History
 
