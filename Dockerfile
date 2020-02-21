@@ -27,7 +27,6 @@ RUN apt-get update \
     curl:amd64 \
     gosu \
     language-pack-zh-hans \
-    sudo \
     tzdata:amd64 \
     unzip:amd64 \
   && apt-get autoremove -y \
@@ -57,11 +56,11 @@ RUN mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
   && chmod +x /usr/local/bin/winetricks \
   && echo 'winetricks installed' \
   \
-  && sudo user -c 'WINEARCH=win32 wine wineboot' \
+  && su user -c 'WINEARCH=win32 wine wineboot' \
   \
   # wintricks
-  && sudo user -c 'winetricks -q win7' \
-  && sudo user -c 'winetricks -q riched20' \
+  && su user -c 'winetricks -q win7' \
+  && su user -c 'winetricks -q riched20' \
   \
   # Clean
   && rm -fr /usr/share/wine/{gecko,mono} \
@@ -74,12 +73,12 @@ RUN curl -sL "$HOME_URL" | tar zxf - \
   && chown -R user:group /home/user \
   && echo 'Artifacts: downlaoded'
 
-RUN sudo user -c "wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg'" \
-  && sudo user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
+RUN su user -c "wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg'" \
+  && su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
   && echo 'Regedit initialized'
 
 # FIXME: reg set success or not ???
-RUN sudo user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" || echo 'Graceful FAIL. REG NOT FOUND'
+RUN su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" || echo 'Graceful FAIL. REG NOT FOUND'
 
 VOLUME [\
   "/home/user/WeChat Files", \
