@@ -56,6 +56,10 @@ function update () {
 }
 
 function main () {
+
+  hello
+  update
+
   DEVICE_ARG=()
   for DEVICE in /dev/video* /dev/snd; do
     DEVICE_ARG+=('--device' "$DEVICE")
@@ -94,6 +98,7 @@ function main () {
     \
     zixia/wechat
 
+    echo
     echo "📦 DoChat Exited with code [$?]"
     echo
     echo '🐞 Bug Report: https://github.com/huan/docker-wechat/issues'
@@ -101,6 +106,4 @@ function main () {
 
 }
 
-hello
-update
 main

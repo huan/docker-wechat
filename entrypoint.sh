@@ -26,8 +26,8 @@ function startWechat () {
     if [ -n "$DOCHAT_DEBUG" ]; then
       wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
     else
-      if ! wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null; then
-        echo "[DoChat] WeChat.exe exited by itself"
+      if ! wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' > /dev/null 2>&1; then
+        echo "[DoChat] WeChat.exe exited for updating"
       fi
     fi
 
