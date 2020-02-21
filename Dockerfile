@@ -3,8 +3,8 @@ FROM ubuntu:eoan
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV \
-  LANG=en_US.UTF-8 \
-  LC_ALL=en_US.UTF-8 \
+  LANG='C.UTF-8' \
+  LC_ALL='C.UTF-8' \
   TZ=Asia/Shanghai \
   WINEDEBUG=-all
 
