@@ -95,7 +95,6 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
 
 ## Known Issues
 
-- [ ] No Sound ([#1](https://github.com/huan/docker-wechat/issues/1))
 - [ ] In-WeChat Browser does not work ([#2](https://github.com/huan/docker-wechat/issues/2))
 
 ## To-do List
@@ -120,6 +119,11 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 ## History
 
 ### master
+
+### v0.4 (Feb 21, 2020)
+
+1. Fix Sound ([#1](https://github.com/huan/docker-wechat/issues/1))
+1. Fix to not exit during the upgrading progress.
 
 ### v0.2 (Feb 18, 2020)
 

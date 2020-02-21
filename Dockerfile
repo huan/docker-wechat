@@ -85,7 +85,9 @@ VOLUME [\
   "/home/user/.wine/drive_c/users/user/Application Data" \
 ]
 
+COPY [A-Z]* /
 COPY entrypoint.sh /
+
 ENTRYPOINT [ "/entrypoint.sh" ]
 
 ENV \
