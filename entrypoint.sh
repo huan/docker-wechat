@@ -18,7 +18,7 @@ function startWechat () {
     else
       # WeChat.exe -> WeChatUpdate.exe -> exited.
       # restart.
-      exec startWeChat
+      startWeChat
     fi
   done
 }
@@ -33,7 +33,7 @@ if [ "$(id -u)" -ne '0' ]; then
   else
     # Issue #4: Work correct when updating...
     # exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null
-    exec startWechat
+    startWechat
   fi
 fi
 
