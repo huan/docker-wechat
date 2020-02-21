@@ -27,6 +27,7 @@ RUN apt-get update \
     curl:amd64 \
     gosu \
     language-pack-zh-hans \
+    sudo \
     tzdata:amd64 \
     unzip:amd64 \
   && apt-get autoremove -y \
@@ -42,51 +43,48 @@ RUN groupadd group \
 
 ARG GECKO_VER=2.47
 ARG MONO_VER=4.9.4
+
 RUN mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
   && curl -sL -o /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
     "https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86.msi" \
-  && curl -sL -o /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
-    "https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}.msi" \
+  # && curl -sL -o /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
+  #   "https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}.msi" \
   && chown -R user:group /usr/share/wine/gecko /usr/share/wine/mono \
-  && echo 'Gecko & Mono installed'
-
-RUN curl -sL -o /usr/local/bin/winetricks \
+  && echo 'Gecko & Mono installed' \
+  \
+  && curl -sL -o /usr/local/bin/winetricks \
     https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
   && chmod +x /usr/local/bin/winetricks \
-  && echo 'winetricks installed'
-
-USER user
-
-RUN WINEARCH=win32 wine wineboot \
+  && echo 'winetricks installed' \
+  \
+  && sudo user -c 'WINEARCH=win32 wine wineboot' \
   \
   # wintricks
-  && winetricks -q win7 \
-  && winetricks -q riched20 \
+  && sudo user -c 'winetricks -q win7' \
+  && sudo user -c 'winetricks -q riched20' \
   \
   # Clean
-  && rm -fr /home/user/.cache/* /home/user/tmp/* /tmp/* \
+  && rm -fr /usr/share/wine/{gecko,mono} \
+  && rm -fr /home/user/{.cache,tmp}/* \
+  && rm -fr  /tmp/* \
   && echo 'Wine: initialized'
 
-USER root
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
 RUN curl -sL "$HOME_URL" | tar zxf - \
   && chown -R user:group /home/user \
   && echo 'Artifacts: downlaoded'
-USER user
 
-RUN wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg' \
-  && wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' \
+RUN sudo user -c "wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg'" \
+  && sudo user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
   && echo 'Regedit initialized'
 
 # FIXME: reg set success or not ???
-RUN wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo "Graceful FAIL. REG NOT FOUND"
+RUN sudo user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" || echo 'Graceful FAIL. REG NOT FOUND'
 
 VOLUME [\
   "/home/user/WeChat Files", \
   "/home/user/.wine/drive_c/users/user/Application Data" \
 ]
-
-USER root
 
 COPY entrypoint.sh /
 ENTRYPOINT [ "/entrypoint.sh" ]
