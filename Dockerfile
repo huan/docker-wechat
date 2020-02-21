@@ -43,12 +43,14 @@ RUN groupadd group \
 ARG GECKO_VER=2.47
 ARG MONO_VER=4.9.4
 
+SHELL ["/bin/bash", "-c"]
+
 RUN mkdir -p /usr/share/wine/{gecko,mono} \
   && curl -sL -o /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
     "https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86.msi" \
   # && curl -sL -o /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
   #   "https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}.msi" \
-  && chown -R user:group /usr/share/wine/gecko /usr/share/wine/mono \
+  && chown -R user:group /usr/share/wine/{gecko,mono} \
   && echo 'Gecko & Mono installed' \
   \
   && curl -sL -o /usr/local/bin/winetricks \
