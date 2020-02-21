@@ -100,10 +100,19 @@ function setupHostname () {
   hostname "$HOSTNAME"
 }
 
+function hello () {
+  VERSION=$(cat /VERSION)
+  echo
+  echo "[DoChat] 盒装微信 v$VERSION"
+  echo
+}
 #
 # Main
 #
 function main () {
+
+  hello
+
   if [ "$(id -u)" -ne '0' ]; then
     startWechat
   else
