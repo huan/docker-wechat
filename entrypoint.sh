@@ -70,4 +70,4 @@ hostname "$HOSTNAME"
 #
 # Switch to user:group, and re-run self to run user task
 #
-exec gosu user:group "$0" "$@"
+exec gosu user "$0" "$@"
