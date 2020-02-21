@@ -80,6 +80,10 @@ RUN su user -c "wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg
 # FIXME: reg set success or not ???
 RUN su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" || echo 'Graceful FAIL. REG NOT FOUND'
 
+ENV \
+  LANG=zh_CN.UTF-8 \
+  LC_ALL=zh_CN.UTF-8
+
 VOLUME [\
   "/home/user/WeChat Files", \
   "/home/user/.wine/drive_c/users/user/Application Data" \
@@ -89,10 +93,6 @@ COPY [A-Z]* /
 COPY entrypoint.sh /
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-
-ENV \
-  LANG=zh_CN.UTF-8 \
-  LC_ALL=zh_CN.UTF-8
 
 LABEL \
     org.opencontainers.image.authors="Huan (李卓桓) <zixia@zixia.net>" \
