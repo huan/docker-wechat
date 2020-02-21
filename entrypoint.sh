@@ -4,18 +4,24 @@ set -eo pipefail
 
 [ -n "$DOCHAT_DEBUG" ] && set -x
 
+function hello () {
+  VERSION=$(cat /VERSION)
+  echo "[DoChat] 盒装微信 v$VERSION"
+}
+
 #
 # WeChat
 #
 function startWechat () {
+
+  hello
+
   if [ -n "$DOCHAT_DEBUG" ]; then
     wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Register for Wechat not found ?'
   fi
 
   while true; do
-    echo
     echo '[DoChat] Starting...'
-    echo
 
     if [ -n "$DOCHAT_DEBUG" ]; then
       wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
@@ -100,18 +106,10 @@ function setupHostname () {
   hostname "$HOSTNAME"
 }
 
-function hello () {
-  VERSION=$(cat /VERSION)
-  echo
-  echo "[DoChat] 盒装微信 v$VERSION"
-  echo
-}
 #
 # Main
 #
 function main () {
-
-  hello
 
   if [ "$(id -u)" -ne '0' ]; then
     startWechat

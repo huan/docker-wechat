@@ -48,13 +48,9 @@ function update () {
     return
   fi
 
-  echo
   echo '🚀 Pulling the latest docker image...'
-  echo
   docker pull zixia/wechat
-  echo
   echo '🚀 Pulling the latest docker image done.'
-  echo
 }
 
 function main () {
@@ -63,9 +59,7 @@ function main () {
     DEVICE_ARG+=('--device' "$DEVICE")
   done
 
-  echo
   echo '🚀 Starting DoChat /dɑɑˈtʃæt/ ...'
-  echo
 
   #
   # --privileged: enable sound (/dev/snd/)
