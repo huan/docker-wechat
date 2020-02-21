@@ -49,7 +49,9 @@ function update () {
   fi
 
   echo '🚀 Pulling the latest docker image...'
+  echo
   docker pull zixia/wechat
+  echo
   echo '🚀 Pulling the latest docker image done.'
 }
 
@@ -60,6 +62,7 @@ function main () {
   done
 
   echo '🚀 Starting DoChat /dɑɑˈtʃæt/ ...'
+  echo
 
   #
   # --privileged: enable sound (/dev/snd/)
