@@ -12,7 +12,9 @@ if [ "$(id -u)" -ne '0' ]; then
     wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Register for Wechat not found ?'
     exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
   else
-    exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null
+    # Issue #4: Work correct when updating...
+    # exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null
+    exec startWechat
   fi
 fi
 
@@ -50,3 +52,17 @@ hostname "$HOSTNAME"
 # Switch to user:group, and re-run self to run user task
 #
 exec gosu user:group "$0" "$@"
+
+function startWechat () {
+  wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null
+
+  while [ true ]; do
+    if [ -n "$(pidof WeChat.exe)" -o -n "$(pidof WeChatUpdate.exe)" ]; then
+      sleep 10
+    else
+      # WeChat.exe -> WeChatUpdate.exe -> exited.
+      # restart.
+      exec startWeChat
+    fi
+  done
+}
