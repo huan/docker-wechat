@@ -4,6 +4,25 @@ set -eo pipefail
 
 [ -n "$DOCHAT_DEBUG" ] && set -x
 
+function startWechat () {
+  echo
+  echo '[DoChat] Starting...'
+  echo
+
+  wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null
+
+  while true; do
+    if [ -n "$(pidof WeChat.exe)" ] || [ -n "$(pidof WeChatUpdate.exe)" ]; then
+      echo -n .
+      sleep 1
+    else
+      # WeChat.exe -> WeChatUpdate.exe -> exited.
+      # restart.
+      exec startWeChat
+    fi
+  done
+}
+
 #
 # User Task
 #
@@ -52,17 +71,3 @@ hostname "$HOSTNAME"
 # Switch to user:group, and re-run self to run user task
 #
 exec gosu user:group "$0" "$@"
-
-function startWechat () {
-  wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' 2> /dev/null
-
-  while [ true ]; do
-    if [ -n "$(pidof WeChat.exe)" -o -n "$(pidof WeChatUpdate.exe)" ]; then
-      sleep 10
-    else
-      # WeChat.exe -> WeChatUpdate.exe -> exited.
-      # restart.
-      exec startWeChat
-    fi
-  done
-}
