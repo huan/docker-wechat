@@ -43,7 +43,7 @@ RUN groupadd group \
 ARG GECKO_VER=2.47
 ARG MONO_VER=4.9.4
 
-RUN mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
+RUN mkdir -p /usr/share/wine/{gecko,mono} \
   && curl -sL -o /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
     "https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86.msi" \
   # && curl -sL -o /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
@@ -65,7 +65,7 @@ RUN mkdir -p /usr/share/wine/gecko /usr/share/wine/mono \
   # Clean
   && rm -fr /usr/share/wine/{gecko,mono} \
   && rm -fr /home/user/{.cache,tmp}/* \
-  && rm -fr  /tmp/* \
+  && rm -fr /tmp/* \
   && echo 'Wine: initialized'
 
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
