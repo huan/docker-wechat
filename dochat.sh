@@ -36,9 +36,9 @@ function hello () {
       DoChat /dɑɑˈtʃæt/ (Docker-weChat) is:
 
       📦 a Docker image
-      🤐 for running Windows WeChat PC
+      🤐 for running PC Windows WeChat
       💻 on your Linux desktop
-      💖 by one-line command
+      💖 by one-line of command
 
 EOF
 }
