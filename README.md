@@ -133,7 +133,7 @@ Project created.
 ## Thanks
 
 1. [基于深度操作系统的微信 docker 镜像](https://github.com/bestwu/docker-wechat) by [@bestwu](https://github.com/bestwu)
-1. DoChat logo designed by Ruoxin SONG.
+1. DoChat logo designed by my friend Ruoxin SONG.
 
 ## Author
 
