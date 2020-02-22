@@ -2,13 +2,13 @@
 
 [![dockeri.co](https://dockeri.co/image/zixia/wechat)](https://hub.docker.com/r/zixia/wechat/)
 
+DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux.
+
 ![DoChat](https://huan.github.io/docker-wechat/images/dochat.png)
 
 > Image Credit: [Docker 101](https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/) + [Icon Finder](https://www.iconfinder.com/icons/4539886/application_chat_communication_wechat_wechat_logo_icon), and Ps-ed by Ruoxin Song
 
 ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
-
-DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux.
 
 ## Features
 
