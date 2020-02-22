@@ -54,6 +54,7 @@ function startWechat () {
       # https://askubuntu.com/a/813214/375372
       # WeChatUpdate.exe -> WeChatUpdate.ex
       if [ -z "$(pgrep -i WeChatUpdate.ex)" ]; then
+        echo
         break
       fi
 
