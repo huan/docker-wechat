@@ -1,5 +1,7 @@
 FROM ubuntu:eoan
 
+SHELL ["/bin/bash", "-c"]
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV \
@@ -42,8 +44,6 @@ RUN groupadd group \
 
 ARG GECKO_VER=2.47
 ARG MONO_VER=4.9.4
-
-SHELL ["/bin/bash", "-c"]
 
 RUN mkdir -p /usr/share/wine/{gecko,mono} \
   && curl -sL -o /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \

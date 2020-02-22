@@ -8,7 +8,17 @@ DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux.
 
 > Image Credit: [Docker 101](https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/) + [Icon Finder](https://www.iconfinder.com/icons/4539886/application_chat_communication_wechat_wechat_logo_icon), and Ps-ed by Ruoxin Song
 
-![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
+## Usage ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
+
+WeChat PC will be started on your Linux desktop by running the following one-line command:
+
+```sh
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh | bash
+```
+
+Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
+
+![DoChat Screenshot](https://huan.github.io/docker-wechat/images/screenshot.jpg)
 
 ## Features
 
@@ -22,54 +32,9 @@ It just works out-of-the-box with one-line of shell command!
 1. Ubuntu Linux desktop (DoChat was developed under Ubuntu 19.10 desktop, should be ok with 19.04/18.10/18.04, might be ok with other Linux distributions)
 1. Docker (run `sudo apt update && apt install docker.io` to install Docker for Ubuntu users)
 
-## Usage
+## Environment Variables
 
-### 1 For Humans 💖
-
-WeChat PC will be started on your Linux desktop by running the following one-line command:
-
-```sh
-curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh | bash
-```
-
-Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
-
-![DoChat Screenshot](https://huan.github.io/docker-wechat/images/screenshot.jpg)
-
-### 2 For Hackers
-
-If you want to control everything by yourself, for example, open multiple WeChat PC client on your desktop; then, you might want to inspect the [dochat.sh](https://github.com/huan/docker-wechat/blob/master/dochat.sh) in our repository and try the following docker command:
-
-```sh
-docker run \
-  --name DoChat \
-  --rm \
-  -i \
-  \
-  -v "$HOME/WeChatFiles:/WeChatFiles" \
-  \
-  -e DISPLAY="$DISPLAY" \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
-  \
-  --device /dev/snd \
-  --device /dev/video0 \
-  \
-  -e XMODIFIERS=@im=fcitx \
-  -e GTK_IM_MODULE=fcitx \
-  -e QT_IM_MODULE=fcitx \
-  -e AUDIO_GID="$(getent group audio | cut -d: -f3)" \
-  -e VIDEO_GID="$(getent group video | cut -d: -f3)" \
-  -e GID="$(id -g)" \
-  -e UID="$(id -u)" \
-  \
-  zixia/wechat
-```
-
-Modify it whatever you want to fulfill your needs.
-
-### 3 Environment Variables
-
-#### `DOCHAT_SKIP_UPDATE`
+### `DOCHAT_SKIP_UPDATE`
 
 If you do not want to update docker image at startup everytime, you can set `DOCHAT_SKIP_UPDATE` environment variable.
 
@@ -84,7 +49,7 @@ In case you have downloaded `dochat.sh`:
 DOCHAT_SKIP_UPDATE=true ./dochat.sh
 ```
 
-#### `DOCHAT_DEBUG`
+### `DOCHAT_DEBUG`
 
 Show more debug log messages.
 
@@ -92,6 +57,36 @@ Show more debug log messages.
 curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
   | DOCHAT_DEBUG=true bash
 ```
+
+## For Hackers
+
+If you want to control everything by yourself, for example, open multiple WeChat PC client on your desktop; then, you might want to inspect the [dochat.sh](https://github.com/huan/docker-wechat/blob/master/dochat.sh) in our repository and try the following docker command:
+
+```sh
+docker run \
+  --name DoChat \
+  --rm \
+  -i \
+  \
+  -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
+  -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  \
+  -e DISPLAY="$DISPLAY" \
+  \
+  -e XMODIFIERS=@im=fcitx \
+  -e GTK_IM_MODULE=fcitx \
+  -e QT_IM_MODULE=fcitx \
+  -e GID="$(id -g)" \
+  -e UID="$(id -u)" \
+  \
+  --ipc=host \
+  --privileged \
+  \
+  zixia/wechat
+```
+
+Modify it whatever you want to fulfill your needs.
 
 ## Known Issues
 
@@ -122,6 +117,8 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 
 ### v0.4 (Feb 21, 2020)
 
+Got a great logo from my art friend Ruoxin SONG.
+
 1. Fix Sound ([#1](https://github.com/huan/docker-wechat/issues/1))
 1. Fix to not exit during the upgrading progress.
 
@@ -136,6 +133,7 @@ Project created.
 ## Thanks
 
 1. [基于深度操作系统的微信 docker 镜像](https://github.com/bestwu/docker-wechat) by [@bestwu](https://github.com/bestwu)
+1. DoChat logo designed by Ruoxin SONG.
 
 ## Author
 
