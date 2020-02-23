@@ -14,7 +14,7 @@ function disableUpgrade () {
   # 分析如何禁止微信自动更新
   #   https://www.bilibili.com/video/av75595562/
   #
-  wine REG ADD 'HKEY_CURRENT_USER\Software\Tencent\WeChat' /v NeedUpdateType /t REG_DWORD /d 0 /f
+  wine REG ADD 'HKEY_CURRENT_USER\Software\Tencent\WeChat' /v NeedUpdateType /t REG_DWORD /d 0 /f > /dev/null 2>&1
 
   CONFIG_EX_INI_FILE='/home/user/.wine/drive_c/users/user/Application Data/Tencent/WeChat/All Users/config/configEx.ini'
   if [ -e "$CONFIG_EX_INI_FILE" ]; then
