@@ -31,7 +31,7 @@ It just works out-of-the-box with one-line of shell command!
 1. Input/Display Chinese characters perfectly.
 1. Paste copied images to WeChat with `Ctrl+V`
 
-![DoChat Screenshot](https://huan.github.io/docker-wechat/images/screenshot-dochat.jpg)
+![DoChat Screenshot](https://huan.github.io/docker-wechat/images/screenshot-dochat.png)
 
 ## Requirements
 
