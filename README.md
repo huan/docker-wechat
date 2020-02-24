@@ -40,6 +40,19 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Environment Variables
 
+### `DOCHAT_DPI`
+
+DPI Scale Factors for graphicg screen resolution.
+
+| DPI  | Scale factor % |
+| ---: | :---: |
+|  96 | 100 |
+| 120 | 125 |
+| 144 | 150 |
+| 192 | 200 |
+
+Default: `120`
+
 ### `DOCHAT_SKIP_UPDATE`
 
 If you do not want to update docker image at startup everytime, you can set `DOCHAT_SKIP_UPDATE` environment variable.
@@ -123,7 +136,7 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 
 ### v0.5 (Feb 24, 2020)
 
-1. Set font display DPI to 120(125%) by default.
+1. Add environment variable `DOCHAT_DPI` to set DPI scale factors for graphicg screen resolution.
 1. Disable auto-update.
 
 ### v0.4 (Feb 21, 2020)

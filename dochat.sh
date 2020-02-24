@@ -84,6 +84,7 @@ function main () {
     \
     -e DISPLAY="$DISPLAY" \
     -e DOCHAT_DEBUG="$DOCHAT_DEBUG" \
+    -e DOCHAT_DPI="$DOCHAT_DPI" \
     \
     -e XMODIFIERS=@im=fcitx \
     -e GTK_IM_MODULE=fcitx \
