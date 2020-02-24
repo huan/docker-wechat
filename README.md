@@ -22,7 +22,7 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh |
 
 Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
 
-![DoChat Term Command](https://huan.github.io/docker-wechat/images/term-dochat.jpg)
+![DoChat Term Command](https://huan.github.io/docker-wechat/images/term-dochat.png)
 
 ## Features
 
@@ -120,6 +120,10 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 ## History
 
 ### master
+
+### v0.5 (Feb 24, 2020)
+
+1. Set font display DPI to 120(125%) by default.
 
 ### v0.4 (Feb 21, 2020)
 
