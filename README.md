@@ -124,6 +124,7 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 ### v0.5 (Feb 24, 2020)
 
 1. Set font display DPI to 120(125%) by default.
+1. Disable auto-update.
 
 ### v0.4 (Feb 21, 2020)
 
