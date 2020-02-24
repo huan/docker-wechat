@@ -42,7 +42,7 @@ It just works out-of-the-box with one-line of shell command!
 
 ### `DOCHAT_DPI`
 
-DPI Scale Factors for graphicg screen resolution.
+DPI Scale Factors for graphic screen resolution.
 
 | DPI  | Scale factor % |
 | ---: | :---: |
