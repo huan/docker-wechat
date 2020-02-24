@@ -22,6 +22,15 @@ function disableUpgrade () {
   fi
 }
 
+function setupFontDpi () {
+  DELETE_KEYS=('HKEY_CURRENT_USER\Control Panel\Desktop' 'HKEY_CURRENT_USER\Software\Wine\Fonts')
+
+  for key in "${DELETE_KEYS[@]}"; do
+    wine reg DELETE "$key" /v LogPixels /f > /dev/null 2>&1 || true
+  done
+  wine reg ADD 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Hardware Profiles\Current\Software\Fonts' /v LogPixels /t REG_DWORD /d 0x80 /f
+}
+
 #
 # WeChat
 #
@@ -29,6 +38,7 @@ function startWechat () {
 
   hello
   disableUpgrade
+  setupFontDpi
 
   if [ -n "$DOCHAT_DEBUG" ]; then
     wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Register for Wechat not found ?'
