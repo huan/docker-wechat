@@ -28,7 +28,12 @@ function setupFontDpi () {
   for key in "${DELETE_KEYS[@]}"; do
     wine reg DELETE "$key" /v LogPixels /f > /dev/null 2>&1 || true
   done
-  wine reg ADD 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Hardware Profiles\Current\Software\Fonts' /v LogPixels /t REG_DWORD /d 0x80 /f > /dev/null 2>&1
+
+  #
+  # DPI:
+  #   120 - 0x78
+  #
+  wine reg ADD 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Hardware Profiles\Current\Software\Fonts' /v LogPixels /t REG_DWORD /d 0x78 /f > /dev/null 2>&1
 }
 
 #
