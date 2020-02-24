@@ -8,6 +8,10 @@ DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux.
 
 > Image Credit: [Docker 101](https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/) + [Icon Finder](https://www.iconfinder.com/icons/4539886/application_chat_communication_wechat_wechat_logo_icon), and Ps-ed by Ruoxin Song
 
+## Honors
+
+- [Tweeted by Y Combinator Hacker News](https://twitter.com/newsycombinator/status/1231489594765594625)
+
 ## Usage ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
 
 WeChat PC will be started on your Linux desktop by running the following one-line command:
