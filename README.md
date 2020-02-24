@@ -22,7 +22,7 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh |
 
 Just copy/paste the above one-line command to your terminal and press Enter. Then the WeChat PC should appear in your XWindows desktop shortly.
 
-![DoChat Screenshot](https://huan.github.io/docker-wechat/images/screenshot.jpg)
+![DoChat Term Command](https://huan.github.io/docker-wechat/images/term-dochat.jpg)
 
 ## Features
 
@@ -30,6 +30,8 @@ It just works out-of-the-box with one-line of shell command!
 
 1. Input/Display Chinese characters perfectly.
 1. Paste copied images to WeChat with `Ctrl+V`
+
+![DoChat Screenshot](https://huan.github.io/docker-wechat/images/screenshot-dochat.jpg)
 
 ## Requirements
 
