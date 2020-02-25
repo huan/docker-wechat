@@ -43,8 +43,8 @@ function hello () {
 EOF
 }
 
-function update () {
-  if [ -n "$DOCHAT_SKIP_UPDATE" ]; then
+function pullUpdate () {
+  if [ -n "$DOCHAT_SKIP_PULL" ]; then
     return
   fi
 
@@ -58,7 +58,7 @@ function update () {
 function main () {
 
   hello
-  update
+  pullUpdate
 
   DEVICE_ARG=()
   for DEVICE in /dev/video* /dev/snd; do

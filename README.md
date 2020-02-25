@@ -54,19 +54,19 @@ DPI Scale Factors for graphic screen resolution.
 
 Default: `120`
 
-### `DOCHAT_SKIP_UPDATE`
+### `DOCHAT_SKIP_PULL`
 
-If you do not want to update docker image at startup everytime, you can set `DOCHAT_SKIP_UPDATE` environment variable.
+If you do not want to pull docker image for the latest version at startup everytime, you can set `DOCHAT_SKIP_PULL` environment variable.
 
 ```sh
 curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
-  | DOCHAT_SKIP_UPDATE=true bash
+  | DOCHAT_SKIP_PULL=true bash
 ```
 
 In case you have downloaded `dochat.sh`:
 
 ```sh
-DOCHAT_SKIP_UPDATE=true ./dochat.sh
+DOCHAT_SKIP_PULL=true ./dochat.sh
 ```
 
 ### `DOCHAT_DEBUG`
