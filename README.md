@@ -11,6 +11,7 @@ DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux.
 ## Honors
 
 - [Tweeted](https://twitter.com/newsycombinator/status/1231489594765594625) by Y Combinator [Hacker News](https://news.ycombinator.com/item?id=22395507)
+- [Headlined](https://huan.github.io/docker-wechat/images/oschina-feb-25-2020.png) by [OS China](https://www.oschina.net/)
 
 ## Usage ![Powered Ubuntu](https://img.shields.io/badge/WeChat-Ubuntu-orange)
 
