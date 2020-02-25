@@ -36,7 +36,7 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Requirements
 
-1. Ubuntu is recommended. DoChat was developed with the Ubuntu Desktop 19.10.
+1. Linux Ubuntu distribution will be recommended (DoChat was developed with the Ubuntu Desktop 19.10)
     1. Debian support confirmed ([#9](https://github.com/huan/docker-wechat/issues/9))
     1. OpenSUSE support confirmed ([#16](https://github.com/huan/docker-wechat/issues/16))
     1. Ubuntu(19.04/18.10/18.04) should be able to support
