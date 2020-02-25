@@ -61,7 +61,7 @@ function startWechat () {
     echo '[DoChat] Starting...'
 
     if [ -n "$DOCHAT_DEBUG" ]; then
-      unser WINEDEBUG
+      unset WINEDEBUG
       wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
     else
       if ! wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' > /dev/null 2>&1; then
