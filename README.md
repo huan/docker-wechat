@@ -128,6 +128,12 @@ Modify it whatever you want to fulfill your needs.
 
 Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/extension/2311/topicons-plus/)
 
+### 2 Exit with code 5 on openSUSE Leap
+
+When you encounter problem that the app exit with code 5  on openSUSE Leap, you need to disable X server access control to allow any user to connect to the X server before you start the app. Use below command to disable it:  
+
+`$ xhost +`
+
 ## Links
 
 - [Input Method don't work when using X11Forward](https://ubuntuforums.org/showthread.php?t=913752)
