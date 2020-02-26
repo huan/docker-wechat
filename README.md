@@ -36,7 +36,7 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Requirements
 
-1. Ubuntu is recommended. DoChat was developed with the Ubuntu Desktop 19.10.
+1. Linux Ubuntu distribution will be recommended (DoChat was developed with the Ubuntu Desktop 19.10)
     1. Debian support confirmed ([#9](https://github.com/huan/docker-wechat/issues/9))
     1. OpenSUSE support confirmed ([#16](https://github.com/huan/docker-wechat/issues/16))
     1. Ubuntu(19.04/18.10/18.04) should be able to support
@@ -127,6 +127,12 @@ Modify it whatever you want to fulfill your needs.
 ### 1 System Tray Icon with Gnome Desktop
 
 Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/extension/2311/topicons-plus/)
+
+### 2 Exit with code 5 on openSUSE Leap
+
+When you encounter problem that the app exit with code 5  on openSUSE Leap, you need to disable X server access control to allow any user to connect to the X server before you start the app. Use below command to disable it:  
+
+`$ xhost +`
 
 ## Links
 
