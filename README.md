@@ -164,6 +164,10 @@ Project created.
 1. [基于深度操作系统的微信 docker 镜像](https://github.com/bestwu/docker-wechat) by [@bestwu](https://github.com/bestwu)
 1. DoChat logo designed by my friend Ruoxin SONG.
 
+## Related Projects
+
+1. [DoWork is a Dockerized WeChat Work (盒装企业微信) PC Windows Client for Linux](https://github.com/huan/docker-wxwork)
+
 ## Author
 
 [Huan LI](https://github.com/huan) ([李卓桓](http://linkedin.com/in/zixia)) zixia@zixia.net
