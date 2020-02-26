@@ -172,7 +172,7 @@ Project created.
 
 ## Related Projects
 
-1. [DoWork is a Dockerized WeChat Work (盒装企业微信) PC Windows Client for Linux](https://github.com/huan/docker-wxwork)
+1. [DoWork /dɑɑˈwɜːk/ 盒装企业微信](https://github.com/huan/docker-wxwork) is a Dockerized WeChat Work (盒装企业微信) PC Windows Client for Linux.
 
 ## Author
 
