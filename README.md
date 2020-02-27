@@ -49,12 +49,12 @@ It just works out-of-the-box with one-line of shell command!
 
 DPI Scale Factors for graphic screen resolution.
 
-| DPI  | Scale factor % |
+| DPI  | Scale factor |
 | ---: | :---: |
-|  96 | 100 |
-| 120 | 125 |
-| 144 | 150 |
-| 192 | 200 |
+|  96 | 100% |
+| 120 | 125% |
+| 144 | 150% |
+| 192 | 200% |
 
 Default: `120`
 
