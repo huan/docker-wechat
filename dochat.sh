@@ -82,9 +82,9 @@ function main () {
     -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     \
-    -e DISPLAY="$DISPLAY" \
-    -e DOCHAT_DEBUG="$DOCHAT_DEBUG" \
-    -e DOCHAT_DPI="$DOCHAT_DPI" \
+    -e DISPLAY \
+    -e DOCHAT_DEBUG \
+    -e DOCHAT_DPI \
     \
     -e XMODIFIERS=@im=fcitx \
     -e GTK_IM_MODULE=fcitx \

@@ -20,8 +20,8 @@ docker run \
   -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
   -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
   \
-  -e DISPLAY="$DISPLAY" \
-  -e DOCHAT_DEBUG="$DOCHAT_DEBUG" \
+  -e DISPLAY \
+  -e DOCHAT_DEBUG \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   \
   -e XMODIFIERS=@im=fcitx \
