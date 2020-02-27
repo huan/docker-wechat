@@ -49,12 +49,12 @@ It just works out-of-the-box with one-line of shell command!
 
 DPI Scale Factors for graphic screen resolution.
 
-| DPI  | Scale factor % |
+| DPI  | Scale factor |
 | ---: | :---: |
-|  96 | 100 |
-| 120 | 125 |
-| 144 | 150 |
-| 192 | 200 |
+|  96 | 100% |
+| 120 | 125% |
+| 144 | 150% |
+| 192 | 200% |
 
 Default: `120`
 
@@ -172,7 +172,7 @@ Project created.
 
 ## Related Projects
 
-1. [DoWork is a Dockerized WeChat Work (盒装企业微信) PC Windows Client for Linux](https://github.com/huan/docker-wxwork)
+1. [DoWork /dɑɑˈwɜːk/ 盒装企业微信](https://github.com/huan/docker-wxwork): Dockerized WeChat Work (企业微信) PC Windows Client for Linux
 
 ## Author
 
