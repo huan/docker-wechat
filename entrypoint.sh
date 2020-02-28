@@ -54,14 +54,15 @@ function startWechat () {
   setupFontDpi
 
   if [ -n "$DOCHAT_DEBUG" ]; then
+    unset WINEDEBUG
     wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Register for Wechat not found ?'
+    echo "[DoChat] DISPLAY=$DISPLAY"
   fi
 
   while true; do
     echo '[DoChat] Starting...'
 
     if [ -n "$DOCHAT_DEBUG" ]; then
-      unset WINEDEBUG
       wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
     else
       if ! wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' > /dev/null 2>&1; then
