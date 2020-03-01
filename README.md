@@ -167,6 +167,8 @@ Project created.
 
 ## Thanks
 
+1. [WeChat Desktop on Linux](https://ferrolho.github.io/blog/2018-12-22/wechat-desktop-on-linux) - by [@ferrolho](https://github.com/ferrolho)
+1. [Wine HQ App Database - WeChat](https://appdb.winehq.org/objectManager.php?sClass=application&iId=16931)
 1. [基于深度操作系统的微信 docker 镜像](https://github.com/bestwu/docker-wechat) by [@bestwu](https://github.com/bestwu)
 1. DoChat logo designed by my friend Ruoxin SONG.
 
