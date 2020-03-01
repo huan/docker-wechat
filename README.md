@@ -127,7 +127,11 @@ Modify it whatever you want to fulfill your needs.
 
 ### 1 System Tray Icon with Gnome Desktop
 
-Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/extension/2311/topicons-plus/)
+Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/extension/2311/topicons-plus/) by bijignome
+
+> Note 1: there's almost half dozen of the `TopIcons` extensions with very similar name: TopIcons, TopIcons Redux, TopIcons Plus, **TopIcons Plus Git**, TopIconsFix. Use **TopIcons Plus Git**, it's the right one.  
+>
+> Note 2: The `TopIcons Plus` has the bug that cause the `wine` itself shows a window on your desktop. ([#19](https://github.com/huan/docker-wechat/issues/19))
 
 ### 2 Exit with code 5 on openSUSE Leap
 
