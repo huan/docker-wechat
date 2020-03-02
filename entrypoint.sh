@@ -59,6 +59,9 @@ function startWechat () {
     echo "[DoChat] DISPLAY=$DISPLAY"
   fi
 
+  VERSION=$(head -1 /VERSION.WeChat)
+  echo "[DoChat] WeChat $VERSION"
+
   while true; do
     echo '[DoChat] Starting...'
 

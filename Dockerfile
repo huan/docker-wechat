@@ -1,9 +1,20 @@
 FROM zixia/wine
 
+RUN apt update && apt install -y \
+    pev \
+  && apt-get autoremove -y \
+  && apt-get clean \
+  && rm -fr /tmp/*
+
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
 RUN curl -sL "$HOME_URL" | tar zxf - \
   && chown -R user:group /home/user \
   && echo 'Artifacts: downlaoded'
+
+ARG WECHAT_DIR='/home/user/.wine/drive_c/Program Files/Tencent/WeChat'
+RUN cd "$WECHAT_DIR" \
+  && peres -v WeChatWin.dll | awk '{print $3}' > /VERSION.WeChat \
+  && echo 'WeChat VERSION generated'
 
 RUN su user -c "wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg'" \
   && su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
