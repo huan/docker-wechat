@@ -13,7 +13,7 @@ RUN curl -sL "$HOME_URL" | tar zxf - \
 
 ARG WECHAT_DIR='/home/user/.wine/drive_c/Program Files/Tencent/WeChat'
 RUN cd "$WECHAT_DIR" \
-  && peres -v WeChatWin.dll | awk '{print $3}' > /VERSION.WeChat \
+  && peres -v WeChatWin.dll | awk '{print $3}' > /home/VERSION.WeChat \
   && echo 'WeChat VERSION generated'
 
 ENV \
@@ -26,7 +26,7 @@ VOLUME [\
 ]
 
 COPY container_root/ /
-COPY [A-Z]* /
+COPY VERSION /
 
 RUN su user -c "wine regedit.exe /s /home/install.reg" \
   && su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
