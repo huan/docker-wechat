@@ -16,13 +16,6 @@ RUN cd "$WECHAT_DIR" \
   && peres -v WeChatWin.dll | awk '{print $3}' > /VERSION.WeChat \
   && echo 'WeChat VERSION generated'
 
-RUN su user -c "wine regedit.exe /s 'C:\Program Files\Tencent\WeChat\install.reg'" \
-  && su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
-  && echo 'Regedit initialized'
-
-# FIXME: reg set success or not ???
-RUN su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" || echo 'Graceful FAIL. REG NOT FOUND'
-
 ENV \
   LANG=zh_CN.UTF-8 \
   LC_ALL=zh_CN.UTF-8
@@ -32,8 +25,14 @@ VOLUME [\
   "/home/user/.wine/drive_c/users/user/Application Data" \
 ]
 
+COPY container_root/ /
 COPY [A-Z]* /
-COPY entrypoint.sh /
+
+RUN su user -c "wine regedit.exe /s /home/install.reg" \
+  && su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
+  && echo 'Regedit initialized'
+# FIXME: reg set success or not ???
+RUN su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" || echo 'Graceful FAIL. REG NOT FOUND'
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 
