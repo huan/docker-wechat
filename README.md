@@ -150,6 +150,17 @@ When you encounter problem that the app exit with code 5  on openSUSE Leap, you 
 
 ### master
 
+### v0.8 (Mar 3, 2020)
+
+Update to WeChat v2.8.0.112
+
+1. 新增订阅号浏览
+1. 新增IPv6网络支持
+1. 新增看一看精选内容
+1. 新增打开聊天中小程序消息
+1. 新增在小程序中使用微信支付
+1. 新增聊天文件面板，可查看和管理所有聊天文件
+
 ### v0.5 (Feb 24, 2020)
 
 1. Add environment variable `DOCHAT_DPI` to set DPI scale factors for graphicg screen resolution.
