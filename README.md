@@ -154,6 +154,10 @@ When you encounter problem that the app exit with code 5  on openSUSE Leap, you 
 
 Update to WeChat v2.8.0.112
 
+```sh
+docker pull zixia/wechat:2.8.0.112
+```
+
 1. 新增订阅号浏览
 1. 新增IPv6网络支持
 1. 新增看一看精选内容
