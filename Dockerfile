@@ -6,7 +6,7 @@ RUN apt update && apt install -y \
   && apt-get clean \
   && rm -fr /tmp/*
 
-ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
+ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.2.8.0.112.tgz
 RUN curl -sL "$HOME_URL" | tar zxf - \
   && chown -R user:group /home/user \
   && echo 'Artifacts: downlaoded'
