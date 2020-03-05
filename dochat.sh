@@ -10,6 +10,8 @@
 #
 set -eo pipefail
 
+DOCHAT_IMAGE_VERSION="zixia/wechat:${DOCHAT_WECHAT_VERSION:-latest}"
+
 function hello () {
   cat <<'EOF'
 
@@ -50,7 +52,7 @@ function pullUpdate () {
 
   echo '🚀 Pulling the latest docker image...'
   echo
-  docker pull zixia/wechat
+  docker pull "$DOCHAT_IMAGE_VERSION"
   echo
   echo '🚀 Pulling the latest docker image done.'
 }
@@ -97,7 +99,7 @@ function main () {
     --ipc=host \
     --privileged \
     \
-    zixia/wechat:"${DOCHAT_WECHAT_VERSION:-latest}"
+    "$DOCHAT_IMAGE_VERSION"
 
     echo
     echo "📦 DoChat Exited with code [$?]"
