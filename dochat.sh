@@ -50,11 +50,11 @@ function pullUpdate () {
     return
   fi
 
-  echo '🚀 Pulling the latest docker image...'
+  echo '🚀 Pulling the docker image...'
   echo
   docker pull "$DOCHAT_IMAGE_VERSION"
   echo
-  echo '🚀 Pulling the latest docker image done.'
+  echo '🚀 Pulling the docker image done.'
 }
 
 function main () {
