@@ -83,6 +83,19 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
   | DOCHAT_DEBUG=true bash
 ```
 
+### `DOCHAT_WECHAT_VERSION`
+
+Use a specific version for WeChat.
+
+You can get a full list of the supported versions from Docker Hub Image Tags at <https://hub.docker.com/r/zixia/wechat/tags>
+
+For example:
+
+```sh
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
+  | DOCHAT_WECHAT_VERSION=2.7.1.85 bash
+```
+
 ## For Hackers
 
 If you want to control everything by yourself, for example, open multiple WeChat PC client on your desktop; then, you might want to inspect the [dochat.sh](https://github.com/huan/docker-wechat/blob/master/dochat.sh) in our repository and try the following docker command:
@@ -152,18 +165,19 @@ When you encounter problem that the app exit with code 5  on openSUSE Leap, you 
 
 ### v0.8 (Mar 3, 2020)
 
-Update to WeChat v2.8.0.112
+1. Add a new configuration environment variable `DOCHAT_WECHAT_VERSION` to select WeChat version.
+1. Add WeChat v2.8.0.112
+    1. 新增订阅号浏览
+    1. 新增IPv6网络支持
+    1. 新增看一看精选内容
+    1. 新增打开聊天中小程序消息
+    1. 新增在小程序中使用微信支付
+    1. 新增聊天文件面板，可查看和管理所有聊天文件
 
 ```sh
-docker pull zixia/wechat:2.8.0.112
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
+  | DOCHAT_WECHAT_VERSION=2.8.0.112 bash
 ```
-
-1. 新增订阅号浏览
-1. 新增IPv6网络支持
-1. 新增看一看精选内容
-1. 新增打开聊天中小程序消息
-1. 新增在小程序中使用微信支付
-1. 新增聊天文件面板，可查看和管理所有聊天文件
 
 ### v0.5 (Feb 24, 2020)
 

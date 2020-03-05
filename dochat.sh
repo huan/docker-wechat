@@ -97,7 +97,7 @@ function main () {
     --ipc=host \
     --privileged \
     \
-    zixia/wechat
+    zixia/wechat:"${DOCHAT_WECHAT_VERSION:-latest}"
 
     echo
     echo "📦 DoChat Exited with code [$?]"
