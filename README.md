@@ -128,7 +128,8 @@ Modify it whatever you want to fulfill your needs.
 
 ## Known Issues
 
-- [ ] WeChat 2.8.0.x can not send big images/files
+- [ ] WeChat 2.8.0.x can not send big images/files ([#341](https://github.com/huan/docker-wechat/issues/31))
+  - Work around: use [2.7.1.85](https://hub.docker.com/layers/zixia/wechat/2.7.1.85/images/sha256-e6e9d21c7cd1dfae0484e697f12f5f3c401de2f02e771d061868740e0d26549d) instead. (`DOCHAT_WECHAT_VERSION=2.7.1.85`)
 - [ ] In-WeChat Browser does not work ([#2](https://github.com/huan/docker-wechat/issues/2))
 
 ## To-do List
