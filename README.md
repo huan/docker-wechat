@@ -154,6 +154,18 @@ When you encounter problem that the app exit with code 5  on openSUSE Leap, you 
 
 `$ xhost +`
 
+### 3 Run app with multi-display
+
+This behavior may cause the view disappear when you use the Join Displays mode, so you need change the mode to mirrors when the app start, this script may help:
+```Bash
+#bin/bash
+xrandr --output HDMI-1-2 --same-as eDP-1-1
+DOCHAT_SKIP_PULL=true /home/yuhui/App/wechat/dochat.sh &
+sleep 5
+xrandr --output HDMI-1-2 --right-of eDP-1-1
+```
+Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in display name. Display more than two, link to [this](http://www.mikewootc.com/wiki/linux/usage/set_x_reso.html).<br/>***Notice***: you must drag the login dialog to built in display side when the process sleep 5, otherwise the view may stuck in the external display. 
+
 ## Links
 
 - [Input Method don't work when using X11Forward](https://ubuntuforums.org/showthread.php?t=913752)
