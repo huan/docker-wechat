@@ -140,7 +140,7 @@ Modify it whatever you want to fulfill your needs.
 
 ## FAQ
 
-### 1 System Tray Icon with Gnome Desktop
+### System Tray Icon with Gnome Desktop
 
 Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/extension/2311/topicons-plus/) by bijignome
 
@@ -148,11 +148,15 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 >
 > Note 2: The `TopIcons Plus` has the bug that cause the `wine` itself shows a window on your desktop. ([#19](https://github.com/huan/docker-wechat/issues/19))
 
-### 2 Exit with code 5 on openSUSE Leap
+### Exit with code 5 on openSUSE Leap
 
 When you encounter problem that the app exit with code 5  on openSUSE Leap, you need to disable X server access control to allow any user to connect to the X server before you start the app. Use below command to disable it:  
 
 `$ xhost +`
+
+### No main window after start up with 2 or more monitor setup
+
+This could be caused by an old bug in wine with multiple monitor setup. Workaround is to start it up with single monitor and then switch to multiple monitors
 
 ## Links
 
