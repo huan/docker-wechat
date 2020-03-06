@@ -128,6 +128,7 @@ Modify it whatever you want to fulfill your needs.
 
 ## Known Issues
 
+- [ ] WeChat 2.8.0.x can not send big images/files
 - [ ] In-WeChat Browser does not work ([#2](https://github.com/huan/docker-wechat/issues/2))
 
 ## To-do List
