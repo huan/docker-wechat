@@ -59,6 +59,13 @@ DPI Scale Factors for graphic screen resolution.
 
 Default: `120`
 
+To enlarge the window & fonts size:
+
+```sh
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
+  | DOCHAT_DPI=192 bash
+```
+
 ### `DOCHAT_SKIP_PULL`
 
 If you do not want to pull docker image for the latest version at startup everytime, you can set `DOCHAT_SKIP_PULL` environment variable.
