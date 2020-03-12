@@ -1,4 +1,4 @@
-FROM zixia/wine:5.0.0
+FROM zixia/wine:5.0
 
 USER root
 RUN apt update && apt install -y \
