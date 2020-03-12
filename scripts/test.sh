@@ -1,6 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bats
 
-set -e
-set -x
+@test "VERSION should match SemVer(x.y.z)" {
+  VERSION=$(cat VERSION)
+  [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+}
 
-echo 'Pretend to testing... OK'
+@test "IMAGE should match account/name" {
+  IMAGE=$(cat IMAGE)
+  [[ "$IMAGE" =~ ^[a-z0-9_]+/[a-z0-9_]+$ ]]
+}

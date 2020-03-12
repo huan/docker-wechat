@@ -18,12 +18,25 @@ jobs:
       - name: Test
         run: ./scripts/test.sh
 
+  # https://www.prestonlamb.com/blog/creating-a-docker-image-with-github-actions
   publish:
     name: Publish
     needs: [build]
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/v[0-9]+'))
     runs-on: ubuntu-latest
     steps:
-      - run: curl -X POST -d '{"from":"GitHub Action"}' "$DOCKER_REBUILD_URL"
-        env:
-          DOCKER_REBUILD_URL: ${{ secrets.DOCKER_REBUILD_URL }}
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }} | docker login -u zixia --password-stdin
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile artifact_image
+      - name: Set Version & Push
+        run: |
+          export IMAGE=$(cat IMAGE)
+          docker tag artifact_image "${IMAGE}"  # latest
+          docker push "${IMAGE}"
+        run: |
+          export IMAGE=$(cat IMAGE)
+          export TAG=$(cat VERSION)
+          echo "Deploying TAG=$TAG"
+          docker tag artifact_image "${IMAGE}:${TAG}"
+          docker push "${IMAGE}:${TAG}"
