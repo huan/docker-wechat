@@ -1,4 +1,4 @@
-FROM zixia/wine
+FROM zixia/wine:5.0.0
 
 RUN apt update && apt install -y \
     pev \

@@ -188,6 +188,10 @@ Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in d
 
 ### master
 
+### v1.0 (Mar 12, 2020)
+
+1. Upgrade wine from v4.0 to v5.0
+
 ### v0.8 (Mar 3, 2020)
 
 1. Add a new configuration environment variable `DOCHAT_WECHAT_VERSION` to select WeChat version.
