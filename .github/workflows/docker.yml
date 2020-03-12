@@ -30,6 +30,7 @@ jobs:
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/v[0-9]+'))
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }} | docker login -u zixia --password-stdin
       - name: Build the Docker image
