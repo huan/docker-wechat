@@ -18,7 +18,7 @@ function main () {
   )
 
   echo "Deploying IMAGE=$IMAGE"
-  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:lastest"
+  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:latest"
   docker push "${IMAGE}:latest"
 
   echo "Deploying TAG=$TAG"

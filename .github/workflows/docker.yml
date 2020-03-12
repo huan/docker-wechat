@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: zbeekman/ShellCheck-Linter-Action@v1.0.1
-      - name: Build
-        run: ./scripts/build.sh
+      # - name: Build
+      #   run: ./scripts/build.sh
       - name: Install Bats
         run: |
           curl -sSL -o /tmp/bats_v0.4.0.tar.gz https://github.com/sstephenson/bats/archive/v0.4.0.tar.gz
