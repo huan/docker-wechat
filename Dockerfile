@@ -26,7 +26,8 @@ VOLUME [\
 ]
 
 COPY container_root/ /
-COPY VERSION /
+COPY [A-Z]* /
+COPY VERSION /VERSION.docker-wechat
 
 RUN su user -c "wine regedit.exe /s /home/install.reg" \
   && su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
