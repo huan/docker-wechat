@@ -31,6 +31,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install Bash SemVer 3.0
+        run: |
+          SEMVER_BIN=/usr/local/bin/semver
+          curl -sL -o "$SEMVER_BIN" https://raw.githubusercontent.com/fsaintjacques/semver-tool/3.0.0/src/semver
+          chmod +x "$SEMVER_BIN"
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }} | docker login -u zixia --password-stdin
       - name: Build the Docker image

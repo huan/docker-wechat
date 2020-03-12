@@ -4,12 +4,7 @@ set -eo pipefail
 
 source scripts/is-release.sh
 
-function main () {
-  ARTIFACT_IMAGE=$1
-
-  IMAGE=$(cat IMAGE)
-  VERSION=$(cat VERSION)
-
+function deployWechatVersion () {
   # https://stackoverflow.com/a/58453200/1123955
   WECHAT_VERSION=$(
     docker run --rm \
@@ -19,27 +14,46 @@ function main () {
     /home/VERSION.WeChat
   )
 
-  echo "Deploying IMAGE=$IMAGE latest"
-  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:latest"
-  docker push "${IMAGE}:latest"
-
   echo "Deploying WECHAT_VERSION=$WECHAT_VERSION"
   docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${WECHAT_VERSION}"
   docker push "${IMAGE}:${WECHAT_VERSION}"
+}
+
+function deployVersion () {
+  SEMVER_MAJOR=$(semver get major "$VERSION")
+  SEMVER_MINOR=$(semver get minor "$VERSION")
+
+  TAG="$SEMVER_MAJOR.$SEMVER_MINOR"
+
+  echo "Deploying TAG=$TAG"
+  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${TAG}"
+  docker push "${IMAGE}:${TAG}"
+}
+
+function deployLatest () {
+  echo "Deploying IMAGE=$IMAGE latest"
+  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:latest"
+  docker push "${IMAGE}:latest"
+}
+
+function main () {
+  if [ -z "$1" ]; then
+    >&2 echo -e "Missing argument.\nUsage: $0 ARTIFACT_IMAGE"
+    exit 1
+  fi
+
+  ARTIFACT_IMAGE=$1
+
+  IMAGE=$(cat IMAGE)
+  VERSION=$(cat VERSION)
+
+  deployWechatVersion
+  deployVersion
 
   if isRelease "$VERSION"; then
-    echo "Deploying VERSION(tag)=$VERSION"
-    docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${VERSION}"
-    docker push "${IMAGE}:${VERSION}"
-  else
-    echo "$VERSION is not a release version, skipped."
+    deployLatest
+    echo "$VERSION set to latest"
   fi
 }
 
-if [ -z "$1" ]; then
-  >&2 echo "Missing argument: ARTIFACT_IMAGE"
-  exit 1
-fi
-
-main "$1"
-
+main "$@"
