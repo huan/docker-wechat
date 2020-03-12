@@ -33,6 +33,6 @@ jobs:
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }} | docker login -u zixia --password-stdin
       - name: Build the Docker image
-        run: docker build . --file Dockerfile -t artifact_image
+        run: docker build -t artifact_image .
       - name: Deploy to Docker Hub
         run: ./script/deploy.sh artifact_image
