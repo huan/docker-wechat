@@ -1,14 +1,16 @@
 FROM zixia/wine:5.0.0
 
+USER root
 RUN apt update && apt install -y \
     pev \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -fr /tmp/*
 
+USER user
+
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.2.8.0.112.tgz
 RUN curl -sL "$HOME_URL" | tar zxf - \
-  && chown -R user:group /home/user \
   && echo 'Artifacts Downloaded'
 
 ARG WECHAT_DIR='/home/user/.wine/drive_c/Program Files/Tencent/WeChat'
@@ -29,11 +31,12 @@ COPY container_root/ /
 COPY [A-Z]* /
 COPY VERSION /VERSION.docker-wechat
 
-RUN su user -c "wine regedit.exe /s /home/install.reg" \
-  && su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
-  && echo 'Regedit initialized'
+RUN wine regedit.exe /s /home/install.reg \
+  && wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' \
+  && echo 'Regedit Initialized'
+
 # FIXME: reg set success or not ???
-RUN su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" || echo 'Graceful FAIL. REG NOT FOUND'
+RUN wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Graceful FAIL. REG NOT FOUND'
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 
