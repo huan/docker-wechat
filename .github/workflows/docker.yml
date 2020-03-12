@@ -38,7 +38,9 @@ jobs:
         run: |
           export IMAGE=$(cat IMAGE)
           export TAG=$(cat VERSION)
-          export WECHAT_VERSION=$(docker run artifact_image cat /home/home/VERSION.WeChat)
+
+          # https://stackoverflow.com/a/58453200/1123955
+          export WECHAT_VERSION=$(docker run -it --rm -a stdout --entrypoint cat artifact_image /home/VERSION.WeChat)
 
           echo "Deploying IMAGE=$IMAGE"
           docker tag artifact_image "${IMAGE}"  # latest
