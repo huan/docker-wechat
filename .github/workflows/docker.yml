@@ -13,13 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: zbeekman/ShellCheck-Linter-Action@v1.0.1
+      - name: Install Dependencies
+        run: ./script/install.sh
       # - name: Build
       #   run: ./scripts/build.sh
-      - name: Install Bats
-        run: |
-          curl -sSL -o /tmp/bats_v0.4.0.tar.gz https://github.com/sstephenson/bats/archive/v0.4.0.tar.gz
-          tar -xf /tmp/bats_v0.4.0.tar.gz
-          sudo bats-0.4.0/install.sh /usr/local
       - name: Test
         run: ./scripts/test.sh
 
@@ -31,11 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Bash SemVer 3.0
-        run: |
-          SEMVER_BIN=/usr/local/bin/semver
-          curl -sL -o "$SEMVER_BIN" https://raw.githubusercontent.com/fsaintjacques/semver-tool/3.0.0/src/semver
-          chmod +x "$SEMVER_BIN"
+      - name: Install Dependencies
+        run: ./script/install.sh
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }} | docker login -u zixia --password-stdin
       - name: Build the Docker image
