@@ -3,9 +3,17 @@
 set -eo pipefail
 set -x
 
-#  --privileged \
+OPTIONS=()
+
+if [ -f /dev/snd ]; then
+  OPTIONS+=('--device /dev/snd')
+fi
+if [ -f /dev/video0 ]; then
+  OPTIONS+=('--device /dev/video0')
+fi
 
 docker run \
+  "${OPTIONS[@]}" \
   --name wechat \
   --rm \
   -ti \
@@ -14,9 +22,6 @@ docker run \
   \
   -e DISPLAY="unix$DISPLAY" \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
-  \
-  --device /dev/snd \
-  --device /dev/video0 \
   \
   -e XMODIFIERS=@im=fcitx \
   -e GTK_IM_MODULE=fcitx \
