@@ -188,9 +188,10 @@ Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in d
 
 ### master
 
-### v1.0 (Mar 12, 2020)
+### v0.10 (Mar 12, 2020)
 
 1. Upgrade wine from v4.0 to v5.0
+1. Deploy to Docker Hub by GitHub Actions with Automatic WeChat Version Number.
 
 ### v0.8 (Mar 3, 2020)
 

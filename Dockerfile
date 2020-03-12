@@ -1,6 +1,5 @@
 FROM zixia/wine:5.0.0
 
-
 USER root
 RUN apt update && apt install -y \
     pev \
@@ -43,7 +42,7 @@ RUN wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Graceful
 ENTRYPOINT [ "/entrypoint.sh" ]
 
 LABEL \
-    org.opencontainers.image.authors="Huan (李卓桓) <zixia@zixia.net>" \
+    org.opencontainers.image.authors="Huan LI (李卓桓) <zixia@zixia.net>" \
     org.opencontainers.image.description="DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux." \
     org.opencontainers.image.documentation="https://github.com/huan/docker-wechat/#readme" \
     org.opencontainers.image.licenses="Apache-2.0" \

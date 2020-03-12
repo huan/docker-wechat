@@ -2,11 +2,13 @@
 
 set -eo pipefail
 
+source scripts/is-release.sh
+
 function main () {
   ARTIFACT_IMAGE=$1
 
   IMAGE=$(cat IMAGE)
-  TAG=$(cat VERSION)
+  VERSION=$(cat VERSION)
 
   # https://stackoverflow.com/a/58453200/1123955
   WECHAT_VERSION=$(
@@ -17,17 +19,19 @@ function main () {
     /home/VERSION.WeChat
   )
 
-  echo "Deploying IMAGE=$IMAGE"
+  echo "Deploying IMAGE=$IMAGE latest"
   docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:latest"
   docker push "${IMAGE}:latest"
-
-  echo "Deploying TAG=$TAG"
-  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${TAG}"
-  docker push "${IMAGE}:${TAG}"
 
   echo "Deploying WECHAT_VERSION=$WECHAT_VERSION"
   docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${WECHAT_VERSION}"
   docker push "${IMAGE}:${WECHAT_VERSION}"
+
+  if isRelease "$VERSION"; then
+    echo "Deploying VERSION(tag)=$VERSION"
+    docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${VERSION}"
+    docker push "${IMAGE}:${VERSION}"
+  fi
 }
 
 if [ -z "$1" ]; then
@@ -36,3 +40,4 @@ if [ -z "$1" ]; then
 fi
 
 main "$1"
+
