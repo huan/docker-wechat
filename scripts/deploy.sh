@@ -10,7 +10,7 @@ function main () {
 
   # https://stackoverflow.com/a/58453200/1123955
   WECHAT_VERSION=$(
-    docker run -it --rm \
+    docker run --rm \
     -a stdout \
     --entrypoint cat \
     "$ARTIFACT_IMAGE" \
@@ -18,8 +18,8 @@ function main () {
   )
 
   echo "Deploying IMAGE=$IMAGE"
-  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}"  # latest
-  docker push "${IMAGE}"
+  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:lastest"
+  docker push "${IMAGE}:latest"
 
   echo "Deploying TAG=$TAG"
   docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${TAG}"
