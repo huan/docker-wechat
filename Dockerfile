@@ -10,7 +10,8 @@ RUN apt update && apt install -y \
 USER user
 
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.2.8.0.112.tgz
-RUN curl -sL "$HOME_URL" | tar zxf - \
+RUN chown user /home \
+  && curl -sL "$HOME_URL" | tar zxf - \
   && echo 'Artifacts Downloaded'
 
 ARG WECHAT_DIR='/home/user/.wine/drive_c/Program Files/Tencent/WeChat'
