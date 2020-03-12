@@ -32,11 +32,12 @@ jobs:
       - name: Set Version & Push
         run: |
           export IMAGE=$(cat IMAGE)
+          export TAG=$(cat VERSION)
+
+          echo "Deploying IMAGE=$IMAGE"
           docker tag artifact_image "${IMAGE}"  # latest
           docker push "${IMAGE}"
-        run: |
-          export IMAGE=$(cat IMAGE)
-          export TAG=$(cat VERSION)
+
           echo "Deploying TAG=$TAG"
           docker tag artifact_image "${IMAGE}:${TAG}"
           docker push "${IMAGE}:${TAG}"
