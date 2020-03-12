@@ -31,6 +31,8 @@ function main () {
     echo "Deploying VERSION(tag)=$VERSION"
     docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${VERSION}"
     docker push "${IMAGE}:${VERSION}"
+  else
+    echo "Deploy $VERSION skipped: it is not a release version"
   fi
 }
 
