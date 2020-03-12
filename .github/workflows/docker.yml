@@ -34,22 +34,5 @@ jobs:
         run: echo ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }} | docker login -u zixia --password-stdin
       - name: Build the Docker image
         run: docker build . --file Dockerfile -t artifact_image
-      - name: Set Version & Push
-        run: |
-          export IMAGE=$(cat IMAGE)
-          export TAG=$(cat VERSION)
-
-          # https://stackoverflow.com/a/58453200/1123955
-          export WECHAT_VERSION=$(docker run -it --rm -a stdout --entrypoint cat artifact_image /home/VERSION.WeChat)
-
-          echo "Deploying IMAGE=$IMAGE"
-          docker tag artifact_image "${IMAGE}"  # latest
-          docker push "${IMAGE}"
-
-          echo "Deploying TAG=$TAG"
-          docker tag artifact_image "${IMAGE}:${TAG}"
-          docker push "${IMAGE}:${TAG}"
-
-          echo "Deploying WECHAT_VERSION=$WECHAT_VERSION"
-          docker tag artifact_image "${IMAGE}:${WECHAT_VERSION}"
-          docker push "${IMAGE}:${WECHAT_VERSION}"
+      - name: Deploy to Docker Hub
+        run: ./script/deploy.sh artifact_image
