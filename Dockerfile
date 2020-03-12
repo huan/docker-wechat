@@ -32,7 +32,7 @@ COPY container_root/ /
 COPY [A-Z]* /
 COPY VERSION /VERSION.docker-wechat
 
-RUN wine regedit.exe /s /home/install.reg \
+RUN wine regedit.exe /s /home/wechat-install.reg \
   && wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' \
   && echo 'Regedit Initialized'
 
