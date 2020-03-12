@@ -1,75 +1,47 @@
+FROM zixia/wine
 
-#
-# Stage 1: Builder
-#
-FROM ubuntu:eoan as Builder
-
-ARG DEBIAN_FRONTEND=noninteractive
-
-ENV LANG='C.UTF-8' \
-  LC_ALL='C.UTF-8' \
-  WINEDEBUG=-all
-
-RUN dpkg --add-architecture i386 \
-  && echo 'i386 Architecture Added'
-
-RUN apt-get update \
-  && apt-get install -y \
-    wine32:i386 \
-    winetricks:amd64 \
-    \
-    # https://github.com/wszqkzqk/deepin-wine-ubuntu/issues/188#issuecomment-554599956
-    # https://zj-linux-guide.readthedocs.io/zh_CN/latest/tool-install-configure/%5BUbuntu%5D%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/
-    ttf-wqy-microhei \
-    ttf-wqy-zenhei \
-    xfonts-wqy \
-    \
-    apt-transport-https:amd64 \
-    ca-certificates:amd64 \
-    cabextract:amd64 \
-    curl:amd64 \
-    gosu \
-    language-pack-zh-hans \
-    tzdata:amd64 \
-    unzip:amd64 \
-    wget:amd64 \
+RUN apt update && apt install -y \
+    pev \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -fr /tmp/*
 
-RUN groupadd group \
-  && useradd -m -g group user \
-  && chsh -s /bin/bash user \
-  && echo 'User created'
-
-COPY --chown=user:group ./container_root/ /
-
-ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.tgz
+ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.2.8.0.112.tgz
 RUN curl -sL "$HOME_URL" | tar zxf - \
-  && chown -R user.group /home/user \
+  && chown -R user:group /home/user \
   && echo 'Artifacts: downlaoded'
 
-RUN ls -l /home
-
-ENV WINEPREFIX=/home/user/.wine
-
-RUN su user -c 'WINEARCH=win32 wine wineboot' \
-  \
-  && echo 'quiet=on' > /etc/wgetrc \
-  && su user -c 'winetricks -q win7' \
-  && su user -c 'winetricks -q riched20' \
-  && rm -rf /etc/wgetrc \
-  \
-  && su user -c 'wine regedit.exe /s "C:\Program Files\Tencent\WeChat\install.reg"' \
-  && su user -c 'wine reg query "HKEY_CURRENT_USER\Software\Tencent\WeChat"' \
-  && rm -rf /home/user/.cache/ /home/user/tmp/* /tmp/* \
-  && echo "Wine: initialized"
+ARG WECHAT_DIR='/home/user/.wine/drive_c/Program Files/Tencent/WeChat'
+RUN cd "$WECHAT_DIR" \
+  && peres -v WeChatWin.dll | awk '{print $3}' > /home/VERSION.WeChat \
+  && echo 'WeChat VERSION generated'
 
 ENV \
   LANG=zh_CN.UTF-8 \
-  LC_ALL=zh_CN.UTF-8 \
-  TZ=Asia/Shanghai
+  LC_ALL=zh_CN.UTF-8
+
+VOLUME [\
+  "/home/user/WeChat Files", \
+  "/home/user/.wine/drive_c/users/user/Application Data" \
+]
+
+COPY container_root/ /
+COPY VERSION /
+
+RUN su user -c "wine regedit.exe /s /home/install.reg" \
+  && su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" \
+  && echo 'Regedit initialized'
+# FIXME: reg set success or not ???
+RUN su user -c "wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'" || echo 'Graceful FAIL. REG NOT FOUND'
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 
-VOLUME /WeChatFiles
+LABEL \
+    org.opencontainers.image.authors="Huan (李卓桓) <zixia@zixia.net>" \
+    org.opencontainers.image.description="DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux." \
+    org.opencontainers.image.documentation="https://github.com/huan/docker-wechat/#readme" \
+    org.opencontainers.image.licenses="Apache-2.0" \
+    org.opencontainers.image.source="git@github.com:huan/docker-wechat.git" \
+    org.opencontainers.image.title="DoChat" \
+    org.opencontainers.image.url="https://github.com/huan/docker-wechat" \
+    org.opencontainers.image.vendor="Huan LI (李卓桓)"

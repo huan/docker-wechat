@@ -14,13 +14,15 @@ fi
 
 docker run \
   "${OPTIONS[@]}" \
-  --name wechat \
+  --name DoChatDev \
   --rm \
   -ti \
   \
-  -v "$HOME/WeChatFiles:/WeChatFiles" \
+  -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
+  -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
   \
-  -e DISPLAY="unix$DISPLAY" \
+  -e DISPLAY \
+  -e DOCHAT_DEBUG \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   \
   -e XMODIFIERS=@im=fcitx \
@@ -30,5 +32,8 @@ docker run \
   -e VIDEO_GID="$(getent group video | cut -d: -f3)" \
   -e GID="$(id -g)" \
   -e UID="$(id -u)" \
+  \
+  --privileged \
+  --ipc=host \
   \
   wechat
