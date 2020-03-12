@@ -3,6 +3,7 @@ FROM zixia/wine:5.0.0
 USER root
 RUN apt update && apt install -y \
     pev \
+    sudo \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -fr /tmp/*
