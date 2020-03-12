@@ -15,6 +15,11 @@ jobs:
       - uses: zbeekman/ShellCheck-Linter-Action@v1.0.1
       - name: Build
         run: ./scripts/build.sh
+      - name: Install Bats
+        run: |
+          curl -sSL -o /tmp/bats_v0.4.0.tar.gz https://github.com/sstephenson/bats/archive/v0.4.0.tar.gz
+          tar -xf /tmp/bats_v0.4.0.tar.gz
+          sudo bats-0.4.0/install.sh /usr/local
       - name: Test
         run: ./scripts/test.sh
 
@@ -33,6 +38,7 @@ jobs:
         run: |
           export IMAGE=$(cat IMAGE)
           export TAG=$(cat VERSION)
+          export WECHAT_VERSION=$(docker run artifact_image cat /home/home/VERSION.WeChat)
 
           echo "Deploying IMAGE=$IMAGE"
           docker tag artifact_image "${IMAGE}"  # latest
@@ -41,3 +47,7 @@ jobs:
           echo "Deploying TAG=$TAG"
           docker tag artifact_image "${IMAGE}:${TAG}"
           docker push "${IMAGE}:${TAG}"
+
+          echo "Deploying WECHAT_VERSION=$WECHAT_VERSION"
+          docker tag artifact_image "${IMAGE}:${WECHAT_VERSION}"
+          docker push "${IMAGE}:${WECHAT_VERSION}"
