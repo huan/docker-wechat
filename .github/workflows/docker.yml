@@ -36,4 +36,4 @@ jobs:
       - name: Build the Docker image
         run: docker build -t artifact_image .
       - name: Deploy to Docker Hub
-        run: ./script/deploy.sh artifact_image
+        run: ./scripts/deploy.sh artifact_image
