@@ -1,18 +1,18 @@
 FROM zixia/wine:5.0.0
 
+
 USER root
 RUN apt update && apt install -y \
     pev \
-    sudo \
   && apt-get autoremove -y \
   && apt-get clean \
+  && chown user /home \
   && rm -fr /tmp/*
 
 USER user
 
 ARG HOME_URL=https://github.com/huan/docker-wechat/releases/download/v0.1/home.2.8.0.112.tgz
-RUN sudo chown user /home \
-  && curl -sL "$HOME_URL" | tar zxf - \
+RUN curl -sL "$HOME_URL" | tar zxf - \
   && echo 'Artifacts Downloaded'
 
 ARG WECHAT_DIR='/home/user/.wine/drive_c/Program Files/Tencent/WeChat'
