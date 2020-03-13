@@ -143,6 +143,10 @@ The docker image has two schema of the versioning:
 1. `x.y`: This is for the docker image version.
     1. `zixia/wechat:0.2`: docker-wechat version 0.2
 
+The two version schema may overlap with each other.
+
+For example: the `zixia/wechat:0.2` may be the same image as the `zixia/wechat:2.8.0.112`.
+
 ## Known Issues
 
 - [ ] WeChat 2.8.0.x can not send big images/files ([#341](https://github.com/huan/docker-wechat/issues/31))

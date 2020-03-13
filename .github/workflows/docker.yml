@@ -1,10 +1,6 @@
 name: Docker
 
 on: [push, pull_request]
-#   push:
-#     branches:
-#       - master
-#       - 'v[0-9]+*'
 
 jobs:
   build:
