@@ -187,7 +187,10 @@ This behavior may cause the view disappear when you use the Join Displays mode, 
 ```Bash
 #bin/bash
 xrandr --output HDMI-1-2 --same-as eDP-1-1
-DOCHAT_SKIP_PULL=true /home/yuhui/App/wechat/dochat.sh &
+
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
+  | DOCHAT_SKIP_PULL=true bash &
+
 sleep 5
 xrandr --output HDMI-1-2 --right-of eDP-1-1
 ```
