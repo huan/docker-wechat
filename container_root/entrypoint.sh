@@ -68,7 +68,7 @@ function startWechat () {
     if [ -n "$DOCHAT_DEBUG" ]; then
       wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
     else
-      if ! wine 'C:\Program Files\Tencent\WeChat\WeChat.exe' > /dev/null 2>&1; then
+      if ! wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'; then
         echo "[DoChat] Found new version"
       fi
     fi
