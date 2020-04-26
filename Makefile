@@ -1,5 +1,15 @@
-# Author: Huan LI <zixia@zixia.net> git.io/zixia
 #
+# DoChat: https://github.com/huan/docker-wechat
+# Author: Huan LI <zixia@zixia.net> github.com/huan
+#
+.PHONY: install
+install:
+	./scripts/install.sh
+
+.PHONY: test
+test:
+	./scripts/test.sh
+
 .PHONY: version
 version:
 	@newVersion=$$(awk -F. '{print $$1"."$$2"."$$3+1}' < VERSION) \

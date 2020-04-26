@@ -12,13 +12,6 @@ ENV \
   LANG=zh_CN.UTF-8 \
   LC_ALL=zh_CN.UTF-8
 
-RUN mkdir -p "/home/user/WeChat Files" "/home/user/.wine/drive_c/users/user/Application Data" \
-  && chown user:group "/home/user/WeChat Files" "/home/user/.wine/drive_c/users/user/Application Data"
-VOLUME [\
-  "/home/user/WeChat Files", \
-  "/home/user/.wine/drive_c/users/user/Application Data" \
-]
-
 COPY --chown=user:group container_root/ /
 COPY [A-Z]* /
 COPY VERSION /VERSION.docker-wechat
@@ -26,6 +19,18 @@ COPY VERSION /VERSION.docker-wechat
 USER user
 RUN bash -x /setup.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
+
+#
+# Huan(202004): VOLUME should be put to the END of the Dockerfile
+#   because it will frezz the contents in the volume directory
+#   which means the content in the directory will lost all changes after the VOLUME command
+#
+RUN mkdir -p "/home/user/WeChat Files" "/home/user/.wine/drive_c/users/user/Application Data" \
+  && chown user:group "/home/user/WeChat Files" "/home/user/.wine/drive_c/users/user/Application Data"
+VOLUME [\
+  "/home/user/WeChat Files", \
+  "/home/user/.wine/drive_c/users/user/Application Data" \
+]
 
 LABEL \
     org.opencontainers.image.authors="Huan LI (李卓桓) <zixia@zixia.net>" \

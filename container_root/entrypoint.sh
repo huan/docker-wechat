@@ -9,21 +9,6 @@ function hello () {
   echo "[DoChat] 盒装微信 v$VERSION"
 }
 
-function disableUpgrade () {
-  #
-  # 分析如何禁止微信自动更新
-  #   https://www.bilibili.com/video/av75595562/
-  #
-  if ! wine REG ADD 'HKEY_CURRENT_USER\Software\Tencent\WeChat' /v NeedUpdateType /t REG_DWORD /d 0 /f > /dev/null 2>&1; then
-    >&2 echo 'FAIL: "reg add HKEY_CURRENT_USER\Software\Tencent\WeChat /v NeedUpdateType /d 0"'
-  fi
-
-  CONFIG_EX_INI_FILE='/home/user/.wine/drive_c/users/user/Application Data/Tencent/WeChat/All Users/config/configEx.ini'
-  if [ -e "$CONFIG_EX_INI_FILE" ]; then
-    sed -i s/^NeedUpdateType=.*$/NeedUpdateType=0/i "$CONFIG_EX_INI_FILE"
-  fi
-}
-
 function setupFontDpi () {
   #
   # Wine Screen Resolution (DPI Setting)
@@ -50,8 +35,9 @@ function setupFontDpi () {
 function startWechat () {
 
   hello
-  disableUpgrade
   setupFontDpi
+
+  /dochat/disable-upgrade.sh
 
   if [ -n "$DOCHAT_DEBUG" ]; then
     unset WINEDEBUG
@@ -69,7 +55,8 @@ function startWechat () {
       wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
     else
       if ! wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'; then
-        echo "[DoChat] Found new version"
+        echo "[DoChat] WeChat.exe exit with code $?"
+        echo "[DoChat] Found new version?"
       fi
     fi
 
@@ -119,36 +106,6 @@ function startWechat () {
   done
 }
 
-function setupUserGroup () {
-  if [ -n "$AUDIO_GID" ]; then
-    groupmod -o -g "$AUDIO_GID" audio
-  fi
-  if [ -n "$VIDEO_GID" ]; then
-    groupmod -o -g "$VIDEO_GID" video
-  fi
-  if [ "$GID" != "$(id -g user)" ]; then
-      groupmod -o -g "$GID" group
-  fi
-  if [ "$UID" != "$(id -u user)" ]; then
-      usermod -o -u "$UID" user
-  fi
-
-  chown user:group \
-    '/home/user/.wine/drive_c/users/user/Application Data' \
-    '/home/user/WeChat Files'
-}
-
-function setupHostname () {
-  export HOSTNAME=DoChat
-  echo "$HOSTNAME" > /etc/hostname
-
-  #
-  # Change the hostname for the wine runtime
-  # --privileged required
-  #
-  hostname "$HOSTNAME"
-}
-
 #
 # Main
 #
@@ -157,8 +114,8 @@ function main () {
   if [ "$(id -u)" -ne '0' ]; then
     startWechat
   else
-    setupUserGroup
-    setupHostname
+    /dochat/set-user-group.sh
+    /dochat/set-hostname.sh
     #
     # Switch to user:group, and re-run self to run user task
     #
