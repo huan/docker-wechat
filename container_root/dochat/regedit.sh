@@ -2,7 +2,7 @@
 set -eo pipefail
 
 tmpRegFile=$(mktemp /tmp/regedit.XXXXXXXXX.reg)
-trap "rm -f '$tmpRegFile'" EXIT
+trap 'rm -f "$tmpRegFile"' EXIT
 
 cat <<_EOF_ > "$tmpRegFile"
 Windows Registry Editor Version 5.00
