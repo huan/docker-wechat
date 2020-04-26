@@ -31,6 +31,7 @@ wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Graceful FAI
 
 #
 # Disable WeChat Upgrade - https://github.com/huan/docker-wechat/issues/29
+#   1. In Wine: it seems that WeChat are using `Application Data` directory instead of `AppData`
 #
 PATCH_FILE_DIR_LIST=(
   '/home/user/.wine/drive_c/users/user/AppData/Roaming/Tencent/WeChat'
