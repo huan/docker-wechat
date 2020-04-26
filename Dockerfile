@@ -42,7 +42,7 @@ RUN wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Graceful
 
 # Disable WeChat Upgrade
 # https://github.com/huan/docker-wechat/issues/29
-ARG PATCH_FILE_DIR=~/.wine/drive_c/users/user/AppData/Roaming/Tencent/WeChat
+ARG PATCH_FILE_DIR=~user/.wine/drive_c/users/user/AppData/Roaming/Tencent/WeChat
 RUN [ -e "$PATCH_FILE_DIR" ] || mkdir -p "$PATCH_FILE_DIR"; touch "${PATCH_FILE_DIR}"/patch
 
 ENTRYPOINT [ "/entrypoint.sh" ]
