@@ -18,7 +18,7 @@ DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux.
 
 ## Disclaimer
 
-We have some reports that the WeChat account has been disabled after using this project:
+We have received reports from our user said that their WeChat account has been disabled after using this project, so use it at your own risk:
 
 1. [昨天用了一下最新版的docker镜像立马微信就被封了 #55](https://github.com/huan/docker-wechat/issues/55)
 
