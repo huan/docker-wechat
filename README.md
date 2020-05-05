@@ -209,6 +209,7 @@ Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in d
 - [Input method related environment variables](https://fcitx-im.org/wiki/Input_method_related_environment_variables)
 - [Docker GUI最佳实践](https://github.com/zjZSTU/Containerization-Automation/blob/982d54458b05ef75fe6436f4ea72bbb66c4cb931/docs/docker/gui/%5BDocker%5DGUI最佳实践.md)
 - [Linux 下 完美运行 wechat 微信](https://www.kpromise.top/run-wechat-in-linux/)
+- [WeChat Desktop on Linux](https://ferrolho.github.io/blog/2018-12-22/wechat-desktop-on-linux)
 
 ## History
 
