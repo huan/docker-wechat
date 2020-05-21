@@ -16,6 +16,12 @@ DoChat(盒装微信) is a Dockerized WeChat(微信) PC Windows Client for Linux.
 - [Tweeted](https://twitter.com/newsycombinator/status/1231489594765594625) by Y Combinator [Hacker News](https://news.ycombinator.com/item?id=22395507)
 - [Headlined](https://huan.github.io/docker-wechat/images/oschina-feb-25-2020.png) by [OS China](https://www.oschina.net/)
 
+## Disclaimer
+
+We have received reports from our user said that their WeChat account has been disabled after using this project, so use it at your own risk:
+
+1. [昨天用了一下最新版的docker镜像立马微信就被封了 #55](https://github.com/huan/docker-wechat/issues/55)
+
 ## Usage ![Powered Linux](https://img.shields.io/badge/WeChat-Linux-brightgreen)
 
 WeChat PC will be started on your Linux desktop by running the following one-line command:
@@ -203,6 +209,7 @@ Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in d
 - [Input method related environment variables](https://fcitx-im.org/wiki/Input_method_related_environment_variables)
 - [Docker GUI最佳实践](https://github.com/zjZSTU/Containerization-Automation/blob/982d54458b05ef75fe6436f4ea72bbb66c4cb931/docs/docker/gui/%5BDocker%5DGUI最佳实践.md)
 - [Linux 下 完美运行 wechat 微信](https://www.kpromise.top/run-wechat-in-linux/)
+- [WeChat Desktop on Linux](https://ferrolho.github.io/blog/2018-12-22/wechat-desktop-on-linux)
 
 ## History
 
