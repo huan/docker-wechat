@@ -3,10 +3,13 @@ FROM zixia/wine:5.0
 USER root
 RUN apt update && apt install -y \
     pev \
+    sudo \
   && apt-get autoremove -y \
   && apt-get clean \
   && chown user /home \
   && rm -fr /tmp/*
+
+RUN echo 'user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 ENV \
   LANG=zh_CN.UTF-8 \

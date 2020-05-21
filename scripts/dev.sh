@@ -39,3 +39,5 @@ docker run \
   --entrypoint /bin/bash \
   \
   wechat
+
+  # zixia/wechat:2.9.0.114
