@@ -173,7 +173,7 @@ For example: the `zixia/wechat:0.2` may be the same image as the `zixia/wechat:2
 - [x] Permanent Storage for WeChat PC Login Data Information ([#3](https://github.com/huan/docker-wechat/issues/3))
 - [ ] Automatically install WeChat PC from .EXE installer when building the Dockerfile. (Test Automation tools might be needed)
 - [ ] Monitor WeChat PC version publications so that we can publish the same version number of the docker image with it.
-- [ ] Resolve the infinite loop situation when running with uid 0
+- [ ] Resolve the infinite loop situation when running with uid 0 ([#60(https://github.com/huan/docker-wechat/issues/60)])
 
 ## FAQ
 
