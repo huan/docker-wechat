@@ -40,7 +40,7 @@ The [dochat.sh](https://github.com/huan/docker-wechat/blob/master/dochat.sh) scr
 that is hard to kill from the terminal. If your user doesn't have the right to run docker please add the user to the docker group `sudo usermod -aG docker $USER`.
  A reboot might be neccessary for the changes to take place.
 
-The issue is described in [#60(https://github.com/huan/docker-wechat/issues/60)].
+The issue is described in ([#60(https://github.com/huan/docker-wechat/issues/60)]).
 
 ## Features
 
