@@ -10,10 +10,10 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # function to load the default values if the vars are unset
 function loadDefaults () {
 	if [ -z ${DOCHAT_WECHAT_VERSION_LATEST+x} ]; then 
-		DOCHAT_WECHAT_LATEST="2.9.0.114"
+		DOCHAT_WECHAT_VERSION_LATEST="2.9.0.114"
 	fi
 	if [ -z ${DOCHAT_WECHAT_VERSION_DEFAULT+x} ]; then
-		DOCHAT_WECHAT_DEFAULT=$DOCHAT_WECHAT_LATEST
+		DOCHAT_WECHAT_VERSION_DEFAULT=$DOCHAT_WECHAT_LATEST
 	fi
 	if [ -z ${DOCHAT_WECHAT_URI_BASE+x} ]; then
 		DOCHAT_WECHAT_URI_BASE="https://github.com/huan/docker-wechat/releases/download/v0.1"
@@ -29,7 +29,7 @@ function loadDefaults () {
 
 # look for the /dochat/wechat-conf.sh and load it if we can to overide the default params
 if [ -x "$SCRIPT_DIR/wechat-conf.sh" ]; then
-	source $SCRIPT_DIR/wechat-conf.sh
+	source "$SCRIPT_DIR/wechat-conf.sh"
 fi
 
 loadDefaults

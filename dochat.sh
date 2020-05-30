@@ -29,7 +29,7 @@ function loadDefaults () {
 # look for the dochat-conf.sh and load it if we can to override the default params
 #
 if [ -x "$SCRIPT_DIR/dochat-conf.sh" ]; then
-	source $SCRIPT_DIR/dochat-conf.sh
+	source "$SCRIPT_DIR/dochat-conf.sh"
 else
 	echo "BS"
 fi
