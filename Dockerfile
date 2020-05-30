@@ -1,5 +1,8 @@
 FROM zixia/wine:5.0
 
+ARG DOCKER_TAG
+ENV DOCKER_TAG $DOCKER_TAG
+
 USER root
 RUN apt update && apt install -y \
     pev \

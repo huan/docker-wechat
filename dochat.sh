@@ -10,16 +10,38 @@
 #
 set -eo pipefail
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 #
 # The defeault docker image version which confirmed that most stable.
 #   See: https://github.com/huan/docker-wechat/issues/29#issuecomment-619491488
 #
-DEFAULT_WECHAT_VERSION=2.7.1.85
+function loadDefaults () {
+	if [ -z ${DEFAULT_WECHAT_VERSION+x} ]; then 
+		DEFAULT_WECHAT_VERSION=2.7.1.85
+	fi
+	if [ -z ${DEFAULT_DOCKER_IMAGE_BASE+x} ]; then 
+		DEFAULT_DOCKER_IMAGE_BASE="zixia/wechat"
+	fi
+}
+
+#
+# look for the dochat-conf.sh and load it if we can to override the default params
+#
+if [ -x "$SCRIPT_DIR/dochat-conf.sh" ]; then
+	source $SCRIPT_DIR/dochat-conf.sh
+else
+	echo "BS"
+fi
+
+loadDefaults
 
 #
 # Get the image version tag from the env
 #
-DOCHAT_IMAGE_VERSION="zixia/wechat:${DOCHAT_WECHAT_VERSION:-${DEFAULT_WECHAT_VERSION}}"
+DOCHAT_IMAGE_VERSION="$DEFAULT_DOCKER_IMAGE_BASE:${DOCHAT_WECHAT_VERSION:-${DEFAULT_WECHAT_VERSION}}"
+
+echo $DOCHAT_IMAGE_VERSION
 
 function hello () {
   cat <<'EOF'
@@ -67,7 +89,6 @@ function pullUpdate () {
 }
 
 function main () {
-
   hello
   pullUpdate
 
