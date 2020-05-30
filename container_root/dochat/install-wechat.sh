@@ -46,7 +46,7 @@ if [ -n "${DOCKER_TAG}" ]; then
 		DOCHAT_WECHAT_VERSION="2.8.0.121"
 	elif [ "$DOCKER_TAG" == "2.9.0.114" ]; then
 		DOCHAT_WECHAT_VERSION="2.9.0.114"
-	elif [ "$DOCKER_TAG" == "latest" ]; then
+	elif [ "$DOCKER_TAG" == "latest-wechat" ]; then
 		DOCHAT_WECHAT_VERSION=$DOCHAT_WECHAT_VERSION_LATEST
 	fi
 fi 
