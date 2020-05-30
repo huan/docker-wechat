@@ -200,7 +200,7 @@ This could be caused by an old bug in wine with multiple monitor setup. Workarou
 This behavior may cause the view disappear when you use the Join Displays mode, so you need change the mode to mirrors when the app start, this script may help:
 
 ```Bash
-#bin/bash
+#!/usr/bin/env bash
 xrandr --output HDMI-1-2 --same-as eDP-1-1
 
 curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
