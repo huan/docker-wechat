@@ -21,7 +21,7 @@ docker run \
   --rm \
   -ti \
   \
-  -v /WeChatFiles:/home/user/WeChatFiles \
+  -v /WeChatFiles:"$HOME/WeChatFiles" \
   \
   -e DISPLAY="unix$DISPLAY" \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
