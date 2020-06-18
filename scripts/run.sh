@@ -3,20 +3,27 @@
 set -eo pipefail
 set -x
 
-#  --privileged \
+OPTIONS=()
+
+if [ -f /dev/snd ]; then
+  OPTIONS+=('--device /dev/snd')
+fi
+if [ -f /dev/video0 ]; then
+  OPTIONS+=('--device /dev/video0')
+fi
 
 docker run \
-  --name wechat \
+  "${OPTIONS[@]}" \
+  --name DoChatDev \
   --rm \
   -ti \
   \
-  -v "$HOME/WeChatFiles:/WeChatFiles" \
+  -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
+  -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
   \
-  -e DISPLAY="unix$DISPLAY" \
+  -e DISPLAY \
+  -e DOCHAT_DEBUG \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
-  \
-  --device /dev/snd \
-  --device /dev/video0 \
   \
   -e XMODIFIERS=@im=fcitx \
   -e GTK_IM_MODULE=fcitx \
@@ -25,5 +32,8 @@ docker run \
   -e VIDEO_GID="$(getent group video | cut -d: -f3)" \
   -e GID="$(id -g)" \
   -e UID="$(id -u)" \
+  \
+  --privileged \
+  --ipc=host \
   \
   wechat

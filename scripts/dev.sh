@@ -6,24 +6,22 @@ set -x
 #  --privileged \
   # --ipc=host \
 
-OPTIONS=()
-
-if [ -f /dev/snd ]; then
-  OPTIONS+=('--device /dev/snd')
-fi
-if [ -f /dev/video0 ]; then
-  OPTIONS+=('--device /dev/video0')
-fi
+DEVICE_ARG=()
+for DEVICE in /dev/video* /dev/snd; do
+  DEVICE_ARG+=('--device' "$DEVICE")
+done
 
 docker run \
-  "${OPTIONS[@]}" \
-  --name wechat \
+  "${DEVICE_ARG[@]}" \
+  --name DoChatDev \
   --rm \
   -ti \
   \
-  -v /WeChatFiles:"$HOME/WeChatFiles" \
+  -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
+  -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
   \
-  -e DISPLAY="unix$DISPLAY" \
+  -e DISPLAY \
+  -e DOCHAT_DEBUG \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   \
   -e XMODIFIERS=@im=fcitx \
@@ -34,6 +32,12 @@ docker run \
   -e GID="$(id -g)" \
   -e UID="$(id -u)" \
   \
+  --privileged \
+  --ipc=host \
+  \
   -p 22:22 \
   --entrypoint /bin/bash \
+  \
   wechat
+
+  # zixia/wechat:2.9.0.114

@@ -1,6 +1,23 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bats
 
-set -e
-set -x
+source ./scripts/is-release.sh
 
-echo 'Pretend to testing... OK'
+@test "VERSION should match SemVer(x.y.z)" {
+  VERSION=$(cat VERSION)
+  [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+}
+
+@test "IMAGE should match account/name" {
+  IMAGE=$(cat IMAGE)
+  [[ "$IMAGE" =~ ^[a-z0-9_]+/[a-z0-9_]+$ ]]
+}
+
+@test "isRelease for release minor version" {
+  RELEASE_VERSION='1.2.3'
+  isRelease "$RELEASE_VERSION"
+}
+
+@test "isRelease for developing minor version" {
+  DEV_VERSION='2.3.4'
+  ! isRelease "$DEV_VERSION"
+}

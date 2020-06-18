@@ -1,41 +1,126 @@
 #!/usr/bin/env bash
 
-set -e
-set -x
+set -eo pipefail
+
+[ -n "$DOCHAT_DEBUG" ] && set -x
+
+function hello () {
+  VERSION=$(cat /VERSION)
+  echo "[DoChat] 盒装微信 v$VERSION"
+}
+
+function setupFontDpi () {
+  #
+  # Wine Screen Resolution (DPI Setting)
+  #   https://wiki.winehq.org/Winecfg#Screen_Resolution_.28DPI_Setting.29
+  #
+  DELETE_KEYS=('HKEY_CURRENT_USER\Control Panel\Desktop' 'HKEY_CURRENT_USER\Software\Wine\Fonts')
+
+  for key in "${DELETE_KEYS[@]}"; do
+    wine reg DELETE "$key" /v LogPixels /f > /dev/null 2>&1 || true
+  done
+
+  wine reg ADD \
+    'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Hardware Profiles\Current\Software\Fonts' \
+    /v LogPixels \
+    /t REG_DWORD \
+    /d "${DOCHAT_DPI:-120}" \
+    /f \
+    > /dev/null 2>&1
+}
 
 #
-# User Task
+# WeChat
 #
-if [ "$(id -u)" -ne '0' ]; then
-  wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat'
-  exec wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
-fi
+function startWechat () {
+
+  hello
+  setupFontDpi
+
+  /dochat/disable-upgrade.sh
+
+  if [ -n "$DOCHAT_DEBUG" ]; then
+    unset WINEDEBUG
+    wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Register for Wechat not found ?'
+    echo "[DoChat] DISPLAY=$DISPLAY"
+  fi
+
+  VERSION=$(head -1 /home/VERSION.WeChat)
+  echo "[DoChat] WeChat $VERSION"
+
+  while true; do
+    echo '[DoChat] Starting...'
+
+    if [ -n "$DOCHAT_DEBUG" ]; then
+      wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'
+    else
+      if ! wine 'C:\Program Files\Tencent\WeChat\WeChat.exe'; then
+        echo "[DoChat] WeChat.exe exit with code $?"
+        echo "[DoChat] Found new version?"
+      fi
+    fi
+
+    #
+    # WeChat.exe will run background after an upgrade.
+    # Check if it exists, and wait it exit.
+    #
+    while true; do
+      if [ -n "$(pgrep -i WeChat.exe)" ]; then
+        sleep 1
+      else
+        echo '[DoChat] WeChat.exe exited'
+        break
+      fi
+    done
+
+    #
+    # Wait until it finish
+    #   if there's a running upgrading process
+    #
+    unset upgrading
+    while true; do
+      # pgrep returns nothing if the pattern length is longer than 15 characters
+      # https://askubuntu.com/a/813214/375372
+      # WeChatUpdate.exe -> WeChatUpdate.ex
+      if [ -z "$(pgrep -i WeChatUpdate.ex)" ]; then
+        echo
+        break
+      fi
+
+      if [ -z "$upgrading" ]; then
+        echo -n '[DoChat] Upgrading...'
+        upgrading=true
+      fi
+
+      echo -n .
+      sleep 1
+
+    done
+
+    # if it's not upgrading, then quit upgrading check loop
+    if [ -z "$upgrading" ]; then
+      break
+    fi
+
+    # go to loop beginning and restart wine again.
+  done
+}
 
 #
-# Root Init
+# Main
 #
+function main () {
 
-if [ -n "$AUDIO_GID" ]; then
-  groupmod -o -g "$AUDIO_GID" audio
-fi
-if [ -n "$VIDEO_GID" ]; then 
-  groupmod -o -g "$VIDEO_GID" video
-fi
-if [ "$GID" != "$(id -g user)" ]; then
-    groupmod -o -g "$GID" group
-fi
-if [ "$UID" != "$(id -u user)" ]; then
-    usermod -o -u "$UID" user
-fi
+  if [ "$(id -u)" -ne '0' ]; then
+    startWechat
+  else
+    /dochat/set-user-group.sh
+    /dochat/set-hostname.sh
+    #
+    # Switch to user:group, and re-run self to run user task
+    #
+    exec gosu user "$0" "$@"
+  fi
+}
 
-# FileSavePath
-chown user:group /WeChatFiles
-
-# wine reg DELETE 'HKCU\Software\Tencent\WeChat' UpdateFailCnt /f &> /dev/null
-# wine reg DELETE 'HKCU\Software\Tencent\WeChat' NeedUpdateType /f &> /dev/null
-# rm "${WINEPREFIX}/drive_c/users/${USER}/Application Data/Tencent/WeChat/All Users/config/configEx.ini"
-
-#
-# Switch to user:group, and re-run self to run user task
-#
-exec gosu user:group "$0" "$@"
+main "$@"
