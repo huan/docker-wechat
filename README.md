@@ -276,6 +276,17 @@ Project created.
 
 1. [DoWork /dɑɑˈwɜːk/ 盒装企业微信](https://github.com/huan/docker-wxwork): Dockerized WeChat Work (企业微信) PC Windows Client for Linux
 
+## Contributors
+
+[![contributor](https://sourcerer.io/fame/huan/huan/docker-wechat/images/0)](https://sourcerer.io/fame/huan/huan/docker-wechat/links/0)
+[![contributor](https://sourcerer.io/fame/huan/huan/docker-wechat/images/1)](https://sourcerer.io/fame/huan/huan/docker-wechat/links/1)
+[![contributor](https://sourcerer.io/fame/huan/huan/docker-wechat/images/2)](https://sourcerer.io/fame/huan/huan/docker-wechat/links/2)
+[![contributor](https://sourcerer.io/fame/huan/huan/docker-wechat/images/3)](https://sourcerer.io/fame/huan/huan/docker-wechat/links/3)
+[![contributor](https://sourcerer.io/fame/huan/huan/docker-wechat/images/4)](https://sourcerer.io/fame/huan/huan/docker-wechat/links/4)
+[![contributor](https://sourcerer.io/fame/huan/huan/docker-wechat/images/5)](https://sourcerer.io/fame/huan/huan/docker-wechat/links/5)
+[![contributor](https://sourcerer.io/fame/huan/huan/docker-wechat/images/6)](https://sourcerer.io/fame/huan/huan/docker-wechat/links/6)
+[![contributor](https://sourcerer.io/fame/huan/huan/docker-wechat/images/7)](https://sourcerer.io/fame/huan/huan/docker-wechat/links/7)
+
 ## Author
 
 [Huan LI](https://github.com/huan) ([李卓桓](http://linkedin.com/in/zixia)) Tencent TVP of Chatbot zixia@zixia.net
