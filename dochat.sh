@@ -79,6 +79,8 @@ function main () {
   echo '🚀 Starting DoChat /dɑɑˈtʃæt/ ...'
   echo
 
+  rm -f "$HOME/DoChat/Applcation Data/Tencent/WeChat/All Users/config/configEx.ini"
+
   #
   # --privileged: enable sound (/dev/snd/)
   # --ipc=host:   enable MIT_SHM (XWindows)
