@@ -14,7 +14,10 @@ set -eo pipefail
 # The defeault docker image version which confirmed that most stable.
 #   See: https://github.com/huan/docker-wechat/issues/29#issuecomment-619491488
 #
-DEFAULT_WECHAT_VERSION=2.7.1.85
+# Updates:
+#   2020-04-01: 2.7.1.85
+#   2020-08-24: 3.3.0.115
+DEFAULT_WECHAT_VERSION=3.3.0.115
 
 #
 # Get the image version tag from the env
@@ -79,6 +82,7 @@ function main () {
   echo '🚀 Starting DoChat /dɑɑˈtʃæt/ ...'
   echo
 
+  # Issue #111 - https://github.com/huan/docker-wechat/issues/111
   rm -f "$HOME/DoChat/Applcation Data/Tencent/WeChat/All Users/config/configEx.ini"
 
   #

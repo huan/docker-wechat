@@ -117,7 +117,7 @@ For example:
 
 ```sh
 curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
-  | DOCHAT_WECHAT_VERSION=2.7.1.85 bash
+  | DOCHAT_WECHAT_VERSION=3.3.0.115 bash
 ```
 
 ## For Hackers
@@ -176,7 +176,7 @@ For example: the `zixia/wechat:0.2` may be the same image as the `zixia/wechat:2
 - [ ] Automatically install WeChat PC from .EXE installer when building the Dockerfile. (Test Automation tools might be needed)
 - [ ] Monitor WeChat PC version publications so that we can publish the same version number of the docker image with it.
 - [ ] Resolve the infinite loop situation when running with uid 0 ([#60](https://github.com/huan/docker-wechat/issues/60))
-- [ ] New feature: wechat_pc_api ， https://github.com/huan/docker-wechat/issues/125
+- [ ] New feature: wechat_pc_api， <https://github.com/huan/docker-wechat/issues/125>
 
 ## FAQ
 
@@ -211,7 +211,9 @@ sleep 5
 xrandr --output HDMI-1-2 --right-of eDP-1-1
 ```
 
-Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in display name. Display more than two, link to [this](http://www.mikewootc.com/wiki/linux/usage/set_x_reso.html).<br/>***Notice***: you must drag the login dialog to built in display side when the process sleep 5, otherwise the view may stuck in the external display. 
+Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in display name. Display more than two, link to [this](http://www.mikewootc.com/wiki/linux/usage/set_x_reso.html).
+
+***Notice***: you must drag the login dialog to built in display side when the process sleep 5, otherwise the view may stuck in the external display.
 
 ## Links
 
@@ -223,7 +225,9 @@ Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in d
 
 ## History
 
-### master
+### master v0.14
+
+1. Update to WeChat version 3.3.0.115
 
 ### v0.10 (Mar 12, 2020)
 
