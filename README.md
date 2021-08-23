@@ -227,7 +227,7 @@ Change the HDMI-1-2 to your external display name and eDP-1-1 to your built in d
 
 ### master v0.14
 
-1. Update to WeChat version 3.3.0.115
+1. Update to WeChat version 3.3.0.115 ([#131](https://github.com/huan/docker-wechat/issues/131))
 1. Rename default branch from `master` to `main`
 
 ### v0.10 (Mar 12, 2020)
