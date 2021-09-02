@@ -4,7 +4,6 @@ set -eo pipefail
 #
 # Generate WeChat Version file by `peres` tool
 #
-e
 #
 # Generate WeChat Version file
 #   Product Version:                 3.3.0.115
