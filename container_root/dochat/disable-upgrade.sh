@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-# 0. disable hosts
-echo "127.0.0.1 dldir1.qq.com" >> /etc/hosts
-
 #
 # Disable WeChat Upgrade - https://github.com/huan/docker-wechat/issues/29
 #   1. In Wine: it seems that WeChat are using `Application Data` directory instead of `AppData`

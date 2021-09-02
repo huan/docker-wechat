@@ -9,7 +9,9 @@ RUN apt update && apt install -y \
   && chown user /home \
   && rm -fr /tmp/*
 
-RUN echo 'user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+RUN \
+  echo 'user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers \
+  echo "127.0.0.1 dldir1.qq.com" >> /etc/hosts
 
 ENV \
   LANG=zh_CN.UTF-8 \
