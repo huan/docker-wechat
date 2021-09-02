@@ -17,7 +17,8 @@ set -eo pipefail
 # Updates:
 #   2020-04-01: 2.7.1.85
 #   2020-08-24: 3.3.0.115 (not working yet)
-DEFAULT_WECHAT_VERSION=2.7.1.85
+#   2020-09-01: 3.3.0.115 (alpha testing)
+DEFAULT_WECHAT_VERSION=3.3.0.115
 
 #
 # Get the image version tag from the env
