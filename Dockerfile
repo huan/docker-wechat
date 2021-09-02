@@ -2,16 +2,18 @@ FROM zixia/wine:6.0
 
 USER root
 RUN apt update && apt install -y \
+    locales \
     pev \
     sudo \
+    vim \
   && apt-get autoremove -y \
   && apt-get clean \
-  && chown user /home \
   && rm -fr /tmp/*
 
-RUN \
-  echo 'user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers \
-  echo "127.0.0.1 dldir1.qq.com" >> /etc/hosts
+RUN chown user /home \
+  && locale-gen en_US.UTF-8 \
+  && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+  && echo "127.0.0.1 dldir1.qq.com" >> /etc/hosts
 
 ENV \
   LANG=zh_CN.UTF-8 \
