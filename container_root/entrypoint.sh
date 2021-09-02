@@ -37,6 +37,7 @@ function startWechat () {
   hello
   setupFontDpi
 
+  /dochat/patch-hosts.sh
   /dochat/disable-upgrade.sh
 
   if [ -n "$DOCHAT_DEBUG" ]; then

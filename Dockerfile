@@ -10,11 +10,6 @@ RUN apt update && apt install -y \
   && apt-get clean \
   && rm -fr /tmp/*
 
-RUN chown user /home \
-  && locale-gen en_US.UTF-8 \
-  && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-  && echo "127.0.0.1 dldir1.qq.com" >> /etc/hosts
-
 ENV \
   LANG=zh_CN.UTF-8 \
   LC_ALL=zh_CN.UTF-8
@@ -22,6 +17,11 @@ ENV \
 COPY --chown=user:group container_root/ /
 COPY [A-Z]* /
 COPY VERSION /VERSION.docker-wechat
+
+RUN chown user /home \
+  && localedef -i zh_CN -c -f UTF-8 zh_CN.UTF-8 \
+  && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+  && echo '127.0.0.1 dldir1.qq.com' >> /etc/hosts
 
 USER user
 RUN bash -x /setup.sh
