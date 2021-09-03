@@ -3,6 +3,8 @@ FROM zixia/wine:6.0
 USER root
 RUN apt update && apt install -y \
     locales \
+    mesa-utils \
+    procps \
     pev \
     sudo \
     vim \
