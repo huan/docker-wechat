@@ -61,6 +61,7 @@ It just works out-of-the-box with one-line of shell command!
 1. Linux Ubuntu distribution will be recommended (DoChat was developed with the Ubuntu Desktop 19.10)
     1. Debian support confirmed ([#9](https://github.com/huan/docker-wechat/issues/9))
     1. OpenSUSE Leap 15.1 support confirmed ([#16](https://github.com/huan/docker-wechat/issues/16))
+    1. OpenSUSE Tumbleweed support confirmed ([#150](https://github.com/huan/docker-wechat/issues/150))
     1. Arch support confirmed ([#26](https://github.com/huan/docker-wechat/issues/26))
     1. Ubuntu(19.04/18.10/18.04) should be able to support
     1. Other Linux distributions: might be able to support
@@ -198,6 +199,12 @@ Install Gnome Extension: [Top Icons Plus Git](https://extensions.gnome.org/exten
 When you encounter problem that the app exit with code 5  on openSUSE Leap, you need to disable X server access control to allow any user to connect to the X server before you start the app. Use below command to disable it:  
 
 `$ xhost +`
+
+### OpenSUSE Tumbleweed Configurations
+
+To address the issue ([#150](https://github.com/huan/docker-wechat/issues/150)) do the following: (Thanks [Wu Bo](https://github.com/bo-wu))
+
+`$ xhost +; sudo chown -R $USER $HOME/DoChat/`
 
 ### No main window after start up with 2 or more monitor setup
 
