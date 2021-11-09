@@ -203,7 +203,8 @@ When you encounter problem that the app exit with code 5  on openSUSE Leap, you 
 ### OpenSUSE Tumbleweed Configurations
 
 To address the issue ([#150](https://github.com/huan/docker-wechat/issues/150)) do the following: (Thanks [Wu Bo](https://github.com/bo-wu))
-'$ xhost +; sudo chown -R $USER $HOME/DoChat/'
+
+`$ xhost +; sudo chown -R $USER $HOME/DoChat/`
 
 ### No main window after start up with 2 or more monitor setup
 
