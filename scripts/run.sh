@@ -6,10 +6,13 @@ set -x
 OPTIONS=()
 
 if [ -f /dev/snd ]; then
-  OPTIONS+=('--device /dev/snd')
+  OPTIONS+=('--device' '/dev/snd')
 fi
 if [ -f /dev/video0 ]; then
-  OPTIONS+=('--device /dev/video0')
+  OPTIONS+=('--device' '/dev/video0')
+fi
+if [[ $(lshw -C display | grep vendor) =~ NVIDIA ]]; then
+  OPTIONS+=('--gpus' 'all' '--env' 'NVIDIA_DRIVER_CAPABILITIES=all')
 fi
 
 docker run \
