@@ -79,6 +79,9 @@ function main () {
   for DEVICE in /dev/video* /dev/snd; do
     DEVICE_ARG+=('--device' "$DEVICE")
   done
+  if [[ $(lshw -C display | grep vendor) =~ NVIDIA ]]; then
+    DEVICE_ARG+=('--gpus' 'all' '--env' 'NVIDIA_DRIVER_CAPABILITIES=all')
+  fi
 
   echo '🚀 Starting DoChat /dɑɑˈtʃæt/ ...'
   echo
