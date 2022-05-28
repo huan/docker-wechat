@@ -295,6 +295,7 @@ Project created.
 ## Related Projects
 
 1. [DoWork /dɑɑˈwɜːk/ 盒装企业微信](https://github.com/huan/docker-wxwork): Dockerized WeChat Work (企业微信) PC Windows Client for Linux
+1. Put your WeChat in the box: <https://github.com/ChisBread/wechat-box>
 
 ## Contributors
 
