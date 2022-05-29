@@ -28,7 +28,32 @@ function setupFontDpi () {
     /f \
     > /dev/null 2>&1
 }
-
+function startVNC () {
+  VNC_DISPLAY_WIDTH=${VNC_DISPLAY_WIDTH:-1280}
+  VNC_DISPLAY_HEIGHT=${VNC_DISPLAY_HEIGHT:-720}
+  # VNC_DISPLAY for multi xserver
+  VNC_DISPLAY=${VNC_DISPLAY:-${DISPLAY:-:0}}
+  NOVNC_PORT=${NOVNC_PORT:-8080}
+  # TODO:
+  #  use xf86 instead of xvfb
+  #  https://bugs.chromium.org/p/chromium/issues/detail?id=596125
+  #  https://github.com/freedesktop/xorg-xf86-video-dummy
+  [ ! -f /etc/supervisord.d/xvfb.conf ] \
+    && mv /etc/supervisord.d/xvfb.conf.disable /etc/supervisord.d/xvfb.conf \
+    && mv /etc/supervisord.d/wechat-monitor.conf.disable /etc/supervisord.d/wechat-monitor.conf
+  [ -d /tmp/.X11-unix ]  \
+    && mv /etc/supervisord.d/xvfb.conf /etc/supervisord.d/xvfb.conf.disable \
+    && mv /etc/supervisord.d/wechat-monitor.conf /etc/supervisord.d/wechat-monitor.conf.disable
+  echo "[DoChat] VNCServer Starting..."
+  exec sudo -E bash -c \
+    "DISPLAY=${VNC_DISPLAY} NOVNC_PORT=${NOVNC_PORT} \
+      VNC_DISPLAY_WIDTH=${VNC_DISPLAY_WIDTH} VNC_DISPLAY_HEIGHT=${VNC_DISPLAY_HEIGHT} \
+      supervisord -c /etc/supervisord.conf -l /var/log/supervisord.log" &
+  while true; do
+    [ -d /tmp/.X11-unix ] && break
+    sleep 1
+  done
+}
 #
 # WeChat
 #
@@ -39,7 +64,15 @@ function startWechat () {
 
   /dochat/patch-hosts.sh
   /dochat/disable-upgrade.sh
-
+  VNC_SERVER=${VNC_SERVER:-no}
+  [ ! -d /tmp/.X11-unix ]  \
+      && echo "[DoChat] Headless mode. Dummy DISPLAY=${DISPLAY:-:0}" \
+      && export DISPLAY=${DISPLAY:-:0}
+  case $VNC_SERVER in
+    true|yes|y|1)
+        startVNC
+      ;;
+  esac
   if [ -n "$DOCHAT_DEBUG" ]; then
     unset WINEDEBUG
     wine reg query 'HKEY_CURRENT_USER\Software\Tencent\WeChat' || echo 'Register for Wechat not found ?'
