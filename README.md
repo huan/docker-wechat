@@ -153,6 +153,32 @@ docker run \
   \
   zixia/wechat
 ```
+Or you want use Docker Compose, see docker-compose example below:
+```yml
+version: "3.5"
+services:
+  dochat:
+    container_name: DoChat
+    image: zixia/wechat
+    privileged: true
+    stdin_open: true
+    ipc: host
+    environment:
+      - XMODIFIERS=@im=fcitx
+      - GTK_IM_MODULE=fcitx
+      - QT_IM_MODULE=fcitx
+      - GID=1000
+      - UID=1000
+      - DISPLAY
+    volumes:
+      - dochat_appdata:/home/user/.wine/drive_c/users/user/Application Data/
+      - dochat_files:/home/user/WeChat Files/
+      - /tmp/.X11-unix:/tmp/.X11-unix 
+
+volumes:
+  dochat_appdata:
+  dochat_files:
+```
 
 Modify it whatever you want to fulfill your needs.
 
