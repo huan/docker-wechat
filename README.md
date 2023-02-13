@@ -139,6 +139,7 @@ docker run \
   -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
   -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v /run/user/$(id -u)/pulse:/run/user/1000/pulse \
   \
   -e DISPLAY \
   \
