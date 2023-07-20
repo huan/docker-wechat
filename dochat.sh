@@ -89,6 +89,10 @@ function main () {
   # Issue #111 - https://github.com/huan/docker-wechat/issues/111
   rm -f "$HOME/DoChat/Applcation Data/Tencent/WeChat/All Users/config/configEx.ini"
 
+  # Issue #165 - https://github.com/huan/docker-wechat/issues/165#issuecomment-1643063633
+  mkdir $HOME/DoChat/"WeChat Files"/ -p
+  mkdir $HOME/DoChat/"Applcation Data"/
+
   #
   # --privileged: enable sound (/dev/snd/)
   # --ipc=host:   enable MIT_SHM (XWindows)
@@ -100,7 +104,7 @@ function main () {
     -i \
     \
     -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
-    -v "$HOME/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
+    -v "$HOME/DoChat/Applcation Data/":'/home/user/.wine/drive_c/users/user/Application Data/' \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     \
     -e DISPLAY \
