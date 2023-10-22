@@ -20,7 +20,9 @@ set -eo pipefail
 #   2020-09-01: 3.3.0.115 (alpha testing)
 
 if [ "$EUID" -eq 0 ] && [ "${ALLOWROOT:-0}" -ne "1" ]
-then echo "Please do not run this script as root."
+then
+  echo "Please do not run this script as root."
+  echo "see https://github.com/huan/docker-wechat/pull/209
   exit 1
 fi
 
