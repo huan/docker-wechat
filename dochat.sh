@@ -22,7 +22,7 @@ set -eo pipefail
 if [ "$EUID" -eq 0 ] && [ "${ALLOWROOT:-0}" -ne "1" ]
 then
   echo "Please do not run this script as root."
-  echo "see https://github.com/huan/docker-wechat/pull/209
+  echo "see https://github.com/huan/docker-wechat/pull/209"
   exit 1
 fi
 
