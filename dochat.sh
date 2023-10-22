@@ -129,7 +129,12 @@ function main () {
     \
     "$DOCHAT_IMAGE_VERSION"
 
-    echo
+    #
+    # Do not put any command between
+    # the above "docker run" and
+    # the below "echo"
+    # because we need to output error code $?
+    #
     echo "📦 DoChat Exited with code [$?]"
     echo
     echo '🐞 Bug Report: https://github.com/huan/docker-wechat/issues'
