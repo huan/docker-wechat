@@ -126,6 +126,7 @@ function main () {
     \
     --ipc=host \
     --privileged \
+    --add-host dldir1.qq.com:127.0.0.1 \
     \
     "$DOCHAT_IMAGE_VERSION"
 
