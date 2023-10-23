@@ -24,8 +24,7 @@ COPY pulse-client.conf /etc/pulse/client.conf
 
 RUN chown user /home \
   && localedef -i zh_CN -c -f UTF-8 zh_CN.UTF-8 \
-  && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-  && echo '127.0.0.1 dldir1.qq.com' >> /etc/hosts
+  && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER user
 RUN bash -x /setup.sh

@@ -18,6 +18,14 @@ set -eo pipefail
 #   2020-04-01: 2.7.1.85
 #   2020-08-24: 3.3.0.115 (not working yet)
 #   2020-09-01: 3.3.0.115 (alpha testing)
+
+if [ "$EUID" -eq 0 ] && [ "${ALLOWROOT:-0}" -ne "1" ]
+then
+  echo "Please do not run this script as root."
+  echo "see https://github.com/huan/docker-wechat/pull/209"
+  exit 1
+fi
+
 DEFAULT_WECHAT_VERSION=3.3.0.115
 
 #
@@ -79,7 +87,7 @@ function main () {
   for DEVICE in /dev/video*; do
     DEVICE_ARG+=('--device' "$DEVICE")
   done
-  if [[ $(lshw -C display | grep vendor) =~ NVIDIA ]]; then
+  if [[ $(lshw -C display 2> /dev/null | grep vendor) =~ NVIDIA ]]; then
     DEVICE_ARG+=('--gpus' 'all' '--env' 'NVIDIA_DRIVER_CAPABILITIES=all')
   fi
 
@@ -120,10 +128,16 @@ function main () {
     \
     --ipc=host \
     --privileged \
+    --add-host dldir1.qq.com:127.0.0.1 \
     \
     "$DOCHAT_IMAGE_VERSION"
 
-    echo
+    #
+    # Do not put any command between
+    # the above "docker run" and
+    # the below "echo"
+    # because we need to output error code $?
+    #
     echo "📦 DoChat Exited with code [$?]"
     echo
     echo '🐞 Bug Report: https://github.com/huan/docker-wechat/issues'
