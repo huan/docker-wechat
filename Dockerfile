@@ -8,6 +8,12 @@ RUN apt update && apt install -y \
     pev \
     sudo \
     vim \
+    xdotool \
+    supervisor \
+    x11vnc \
+    novnc \
+    xvfb \
+    fluxbox \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -fr /tmp/*
