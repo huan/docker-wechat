@@ -99,8 +99,9 @@ function main () {
 
   # Issue #165 - https://github.com/huan/docker-wechat/issues/165#issuecomment-1643063633
   HOST_DIR_HOME_DOCHAT_WECHAT_FILES = "$HOME/DoChat/WeChat Files/"
+  HOST_DIR_HOME_DOCHAT_APPLICATION_DATA = "$HOME/DoChat/Applcation Data/"
   mkdir "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES" -p
-  mkdir "$HOME"/DoChat/"Applcation Data"/
+  mkdir "$HOST_DIR_HOME_DOCHAT_APPLICATION_DATA" -p
 
   #
   # --privileged: enable sound (/dev/snd/)
@@ -112,8 +113,8 @@ function main () {
     --rm \
     -i \
     \
-    -v "$HOME/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
-    -v "$HOME/DoChat/Applcation Data/":'/home/user/.wine/drive_c/users/user/Application Data/' \
+    -v "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES":'/home/user/WeChat Files/' \
+    -v "$HOST_DIR_HOME_DOCHAT_APPLICATION_DATA":'/home/user/.wine/drive_c/users/user/Application Data/' \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     \
     -e DISPLAY \
