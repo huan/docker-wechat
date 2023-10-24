@@ -98,8 +98,9 @@ function main () {
   rm -f "$HOME/DoChat/Applcation Data/Tencent/WeChat/All Users/config/configEx.ini"
 
   # Issue #165 - https://github.com/huan/docker-wechat/issues/165#issuecomment-1643063633
-  mkdir $HOME/DoChat/"WeChat Files"/ -p
-  mkdir $HOME/DoChat/"Applcation Data"/
+  HOST_DIR_HOME_DOCHAT_WECHAT_FILES = "$HOME/DoChat/WeChat Files/"
+  mkdir "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES" -p
+  mkdir "$HOME"/DoChat/"Applcation Data"/
 
   #
   # --privileged: enable sound (/dev/snd/)
