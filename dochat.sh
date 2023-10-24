@@ -98,8 +98,8 @@ function main () {
   rm -f "$HOME/DoChat/Applcation Data/Tencent/WeChat/All Users/config/configEx.ini"
 
   # Issue #165 - https://github.com/huan/docker-wechat/issues/165#issuecomment-1643063633
-  HOST_DIR_HOME_DOCHAT_WECHAT_FILES = "$HOME/DoChat/WeChat Files/"
-  HOST_DIR_HOME_DOCHAT_APPLICATION_DATA = "$HOME/DoChat/Applcation Data/"
+  HOST_DIR_HOME_DOCHAT_WECHAT_FILES="$HOME/DoChat/WeChat Files/"
+  HOST_DIR_HOME_DOCHAT_APPLICATION_DATA="$HOME/DoChat/Applcation Data/"
   mkdir "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES" -p
   mkdir "$HOST_DIR_HOME_DOCHAT_APPLICATION_DATA" -p
 
