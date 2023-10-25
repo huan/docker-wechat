@@ -84,7 +84,7 @@ function main () {
   pullUpdate
 
   DEVICE_ARG=()
-  for DEVICE in /dev/video* /dev/snd; do
+  for DEVICE in /dev/video*; do
     DEVICE_ARG+=('--device' "$DEVICE")
   done
   if [[ $(lshw -C display 2> /dev/null | grep vendor) =~ NVIDIA ]]; then
@@ -116,6 +116,7 @@ function main () {
     -v "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES":'/home/user/WeChat Files/' \
     -v "$HOST_DIR_HOME_DOCHAT_APPLICATION_DATA":'/home/user/.wine/drive_c/users/user/Application Data/' \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v "/run/user/$(id -u)/pulse":"/run/pulse" \
     \
     -e DISPLAY \
     -e DOCHAT_DEBUG \

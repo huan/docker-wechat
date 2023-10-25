@@ -8,6 +8,7 @@ RUN apt update && apt install -y \
     pev \
     sudo \
     vim \
+    pulseaudio-utils \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -fr /tmp/*
@@ -19,6 +20,7 @@ ENV \
 COPY --chown=user:group container_root/ /
 COPY [A-Z]* /
 COPY VERSION /VERSION.docker-wechat
+COPY pulse-client.conf /etc/pulse/client.conf
 
 RUN chown user /home \
   && localedef -i zh_CN -c -f UTF-8 zh_CN.UTF-8 \
