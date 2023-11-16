@@ -64,8 +64,10 @@ It just works out-of-the-box with one-line of shell command!
     1. OpenSUSE Tumbleweed support confirmed ([#150](https://github.com/huan/docker-wechat/issues/150))
     1. Arch support confirmed ([#26](https://github.com/huan/docker-wechat/issues/26))
     1. Ubuntu(19.04/18.10/18.04) should be able to support
+    1. Linux Mint 21.2 Cinnamon support confirmed ([#215](https://github.com/huan/docker-wechat/issues/215))
     1. Other Linux distributions: might be able to support
 1. Docker (run `sudo apt update && apt install docker.io` to install Docker for Ubuntu users)
+1. [`nvidia-container-toolkit`](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) may be installed ([#173](https://github.com/huan/docker-wechat/issues/173))
 
 ## Environment Variables
 
