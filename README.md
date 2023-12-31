@@ -313,12 +313,12 @@ Project created.
 
 ## Author
 
-[Huan LI](https://github.com/huan) ([李卓桓](http://linkedin.com/in/zixia)) Tencent TVP of Chatbot zixia@zixia.net
+[Huan Li](https://github.com/huan) ([LinkedIn](http://linkedin.com/in/huan42)) Tencent TVP of Chatbot.
 
 [![Profile of Huan LI (李卓桓) on StackOverflow](https://stackexchange.com/users/flair/265499.png)](https://stackexchange.com/users/265499)
 
 ## Copyright & License
 
-- Code & Docs © 2020-now Huan LI \<zixia@zixia.net\>
+- Code & Docs © 2020-now Huan Li \<huan@chatie.io\>
 - Code released under the Apache-2.0 License
 - Docs released under Creative Commons
