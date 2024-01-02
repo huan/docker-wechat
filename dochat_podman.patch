@@ -1,0 +1,51 @@
+--- dochat.sh	2023-11-17 16:24:51.014454965 +0100
++++ dochat_podman.sh	2023-11-28 14:23:14.422098651 +0100
+@@ -31,7 +31,7 @@
+ #
+ # Get the image version tag from the env
+ #
+-DOCHAT_IMAGE_VERSION="zixia/wechat:${DOCHAT_WECHAT_VERSION:-${DEFAULT_WECHAT_VERSION}}"
++DOCHAT_IMAGE_VERSION="docker.io/zixia/wechat:${DOCHAT_WECHAT_VERSION:-${DEFAULT_WECHAT_VERSION}}"
+ 
+ function hello () {
+   cat <<'EOF'
+@@ -73,7 +73,7 @@
+ 
+   echo '🚀 Pulling the docker image...'
+   echo
+-  docker pull "$DOCHAT_IMAGE_VERSION"
++  podman pull "$DOCHAT_IMAGE_VERSION"
+   echo
+   echo '🚀 Pulling the docker image done.'
+ }
+@@ -90,6 +90,8 @@
+   if [[ $(lshw -C display 2> /dev/null | grep vendor) =~ NVIDIA ]]; then
+     DEVICE_ARG+=('--gpus' 'all' '--env' 'NVIDIA_DRIVER_CAPABILITIES=all')
+   fi
++  
++  xhost +
+ 
+   echo '🚀 Starting DoChat /dɑɑˈtʃæt/ ...'
+   echo
+@@ -107,11 +109,12 @@
+   # --privileged: enable sound (/dev/snd/)
+   # --ipc=host:   enable MIT_SHM (XWindows)
+   #
+-  docker run \
++  podman run \
+     "${DEVICE_ARG[@]}" \
+     --name DoChat \
+     --rm \
+     -i \
++    -u 0 \
+     \
+     -v "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES":'/home/user/WeChat Files/' \
+     -v "$HOST_DIR_HOME_DOCHAT_APPLICATION_DATA":'/home/user/.wine/drive_c/users/user/Application Data/' \
+@@ -134,6 +137,7 @@
+     --ipc=host \
+     --privileged \
+     --add-host dldir1.qq.com:127.0.0.1 \
++    --userns=keep-id \
+     \
+     "$DOCHAT_IMAGE_VERSION"
+ 
