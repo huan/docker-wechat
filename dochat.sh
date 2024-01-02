@@ -94,6 +94,8 @@ function main () {
   echo '🚀 Starting DoChat /dɑɑˈtʃæt/ ...'
   echo
 
+  VOLUME_ARG=()
+
   # Issue #111 - https://github.com/huan/docker-wechat/issues/111
   rm -f "$HOME/DoChat/Applcation Data/Tencent/WeChat/All Users/config/configEx.ini"
 
@@ -102,6 +104,14 @@ function main () {
   HOST_DIR_HOME_DOCHAT_APPLICATION_DATA="$HOME/DoChat/Applcation Data/"
   mkdir "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES" -p
   mkdir "$HOST_DIR_HOME_DOCHAT_APPLICATION_DATA" -p
+
+  VOLUME_ARG+=('-v' "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES":'/home/user/WeChat Files/')
+  VOLUME_ARG+=('-v' "$HOST_DIR_HOME_DOCHAT_APPLICATION_DATA":'/home/user/.wine/drive_c/users/user/Application Data/')
+  VOLUME_ARG+=('-v' '/tmp/.X11-unix:/tmp/.X11-unix')
+  VOLUME_ARG+=('-v' "/run/user/$(id -u)/pulse":'/run/pulse')
+  if [ -n "$DOCHAT_MOUNT_HOME" ]; then
+    VOLUME_ARG+=('-v' "$HOME":'/home/user/home')
+  fi
 
   #
   # --privileged: enable sound (/dev/snd/)
@@ -113,10 +123,7 @@ function main () {
     --rm \
     -i \
     \
-    -v "$HOST_DIR_HOME_DOCHAT_WECHAT_FILES":'/home/user/WeChat Files/' \
-    -v "$HOST_DIR_HOME_DOCHAT_APPLICATION_DATA":'/home/user/.wine/drive_c/users/user/Application Data/' \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v "/run/user/$(id -u)/pulse":"/run/pulse" \
+    "${VOLUME_ARG[@]}" \
     \
     -e DISPLAY \
     -e DOCHAT_DEBUG \

@@ -128,6 +128,21 @@ curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
   | DOCHAT_WECHAT_VERSION=3.3.0.115 bash
 ```
 
+### `DOCHAT_MOUNT_HOME`
+
+Mount user's home directory to container path `/home/user/home`, which is accessable from the Choose File Dialog -> My Documents -> home.
+
+```sh
+curl -sL https://raw.githubusercontent.com/huan/docker-wechat/master/dochat.sh \
+  | DOCHAT_MOUNT_HOME=true bash
+```
+
+Or in case you have downloaded `dochat.sh`:
+
+```sh
+DOCHAT_MOUNT_HOME=true ./dochat.sh
+```
+
 ## For Hackers
 
 If you want to control everything by yourself, for example, open multiple WeChat PC client on your desktop; then, you might want to inspect the [dochat.sh](https://github.com/huan/docker-wechat/blob/master/dochat.sh) in our repository and try the following docker command:
