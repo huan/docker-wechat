@@ -2,6 +2,7 @@
 
 [![Docker](https://github.com/huan/docker-wechat/workflows/Docker/badge.svg)](https://github.com/huan/docker-wechat/actions?query=workflow%3ADocker)
 [![Powered By Wine](https://img.shields.io/badge/Powered%20By-Wine-red)](https://www.winehq.org/)
+[![Architecture](https://img.shields.io/badge/arch-amd64%20%7C%20arm64-blue)](#requirements)
 
 [![dockeri.co](https://dockeri.co/image/zixia/wechat)](https://hub.docker.com/r/zixia/wechat/tags)
 
@@ -51,6 +52,7 @@ The issue is described in [#60](https://github.com/huan/docker-wechat/issues/60)
 
 It just works out-of-the-box with one-line of shell command!
 
+1. **Multi-architecture support**: Runs seamlessly on both **x86_64 (`amd64`)** and **aarch64 (`arm64`)** (e.g. PC, Raspberry Pi, Apple Silicon, ARM Linux).
 1. Input/Display Chinese characters perfectly.
 1. Paste copied images to WeChat with `Ctrl+V`
 
@@ -58,6 +60,7 @@ It just works out-of-the-box with one-line of shell command!
 
 ## Requirements
 
+1. **Architecture**: `x86_64` (`amd64`) or `aarch64` (`arm64`)
 1. Linux Ubuntu distribution will be recommended (DoChat was developed with the Ubuntu Desktop 19.10)
     1. Debian support confirmed ([#9](https://github.com/huan/docker-wechat/issues/9))
     1. OpenSUSE Leap 15.1 support confirmed ([#16](https://github.com/huan/docker-wechat/issues/16))
@@ -166,12 +169,14 @@ The docker image has two schema of the versioning:
 1. `X.Y.Z.a`: This is for the WeChat PC Windows Client version
     1. `zixia/wechat:2.7.1.85`: WeChat 2.7.1.85
     1. `zixia/wechat:2.8.0.112`: WeChat 2.8.0.112
+    1. `zixia/wechat:3.3.0.115`: WeChat 3.3.0.115
 1. `x.y`: This is for the docker image version.
     1. `zixia/wechat:0.2`: docker-wechat version 0.2
+    1. `zixia/wechat:0.16`: docker-wechat version 0.16 (multi-arch unified manifest for `amd64` and `arm64`)
 
 The two version schema may overlap with each other.
 
-For example: the `zixia/wechat:0.2` may be the same image as the `zixia/wechat:2.8.0.112`.
+For example: the `zixia/wechat:0.16` contains the same WeChat version as `zixia/wechat:3.3.0.115`.
 
 ## Known Issues
 

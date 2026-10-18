@@ -4,36 +4,13 @@ set -eo pipefail
 
 source scripts/is-release.sh
 
-function deployWechatVersion () {
+function getWechatVersion () {
   # https://stackoverflow.com/a/58453200/1123955
-  WECHAT_VERSION=$(
-    docker run --rm \
+  docker run --rm \
     -a stdout \
     --entrypoint cat \
     "$ARTIFACT_IMAGE" \
     /home/VERSION.WeChat
-  )
-
-  echo "Deploying WECHAT_VERSION=$WECHAT_VERSION"
-  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${WECHAT_VERSION}"
-  docker push "${IMAGE}:${WECHAT_VERSION}"
-}
-
-function deployVersion () {
-  SEMVER_MAJOR=$(semver get major "$VERSION")
-  SEMVER_MINOR=$(semver get minor "$VERSION")
-
-  TAG="$SEMVER_MAJOR.$SEMVER_MINOR"
-
-  echo "Deploying TAG=$TAG"
-  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:${TAG}"
-  docker push "${IMAGE}:${TAG}"
-}
-
-function deployLatest () {
-  echo "Deploying IMAGE=$IMAGE latest"
-  docker tag "${ARTIFACT_IMAGE}" "${IMAGE}:latest"
-  docker push "${IMAGE}:latest"
 }
 
 function main () {
@@ -47,13 +24,28 @@ function main () {
   IMAGE=$(cat IMAGE)
   VERSION=$(cat VERSION)
 
-  deployWechatVersion
-  deployVersion
+  WECHAT_VERSION=$(getWechatVersion)
+  echo "Detected WECHAT_VERSION=$WECHAT_VERSION"
+
+  SEMVER_MAJOR=$(semver get major "$VERSION")
+  SEMVER_MINOR=$(semver get minor "$VERSION")
+  TAG="$SEMVER_MAJOR.$SEMVER_MINOR"
+
+  TAG_ARGS=()
+  TAG_ARGS+=("-t" "${IMAGE}:${WECHAT_VERSION}")
+  TAG_ARGS+=("-t" "${IMAGE}:${TAG}")
 
   if isRelease "$VERSION"; then
-    deployLatest
+    TAG_ARGS+=("-t" "${IMAGE}:latest")
     echo "$VERSION set to latest"
   fi
+
+  echo "Building and deploying multi-arch (linux/amd64, linux/arm64) images..."
+  docker buildx build \
+    --platform linux/amd64,linux/arm64 \
+    "${TAG_ARGS[@]}" \
+    --push \
+    .
 }
 
 main "$@"

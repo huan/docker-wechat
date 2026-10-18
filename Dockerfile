@@ -1,7 +1,15 @@
-FROM zixia/wine:6.0
+ARG TARGETARCH=amd64
+FROM zixia/wine:6.0 AS base-amd64
+FROM zixia/wine:arm64 AS base-arm64
+
+FROM base-${TARGETARCH} AS final
 
 USER root
-RUN apt update && apt install -y \
+RUN rm -rf /etc/apt/sources.list.d/* \
+  && echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until \
+  && echo 'deb http://archive.debian.org/debian/ bullseye main contrib non-free' > /etc/apt/sources.list \
+  && echo 'deb http://archive.debian.org/debian-security/ bullseye-security main contrib non-free' >> /etc/apt/sources.list \
+  && apt-get update && apt-get install -y \
     locales \
     mesa-utils \
     procps \
